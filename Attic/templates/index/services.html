@@ -1,8 +1,132 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block style %}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+  align-items: center;
+  grid-gap: 15px;
+}
+
+.flip-card {
+  background-color: transparent;
+  width: 300px;
+  height: 350px;
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  background-color: #bbb;
+  color: black;
+}
+
+.flip-card-back {
+  background-color: gray;
+  color: white;
+  transform: rotateY(180deg);
+}
+{% endblock %}
+
 {% block body %}
 
+<h1>Additional Services:</h1>
+<h1>Hover over the image below for more information:</h1>
 
+<div class="container">
+  <div class="grid">
+
+<div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <img src="https://blog.herzing.ca/hs-fs/hubfs/Imported_Blog_Media/Aug5-1.jpg?width=848&height=565&name=Aug5-1.jpg" alt="" style="width:300px;height:350px;">
+    </div>
+    <div class="flip-card-back">
+      <h1>Construction</h1>
+      <p>This & That</p>
+      <p>More of this and that</p>
+    </div>
+  </div>
+</div>
+
+
+<div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <img src="https://media.istockphoto.com/photos/man-installing-asphalt-roof-picture-id1025187342?k=6&m=1025187342&s=612x612&w=0&h=g36CEUlpnlC5fekJ2ts2kI0H0lEttcZg6EUfBCTzLI8=" alt="" style="width:300px;height:350px;">
+    </div>
+    <div class="flip-card-back">
+      <h1>Roofing Repair</h1>
+      <p>Repair</p>
+      <p>Replace</p>
+    </div>
+  </div>
+</div>
+
+<div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <img src="https://cdn.24.co.za/files/Cms/General/d/1361/05221892f1084e03970da617306b1db2.jpg" alt="" style="width:300px;height:350px;">
+    </div>
+    <div class="flip-card-back">
+      <h1>Insulation</h1>
+      <p>Walls</p>
+      <p>Attic</p>
+    </div>
+  </div>
+</div>
+
+<div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <img src="https://media.angieslist.com/s3fs-public/styles/widescreen_large/public/drywall-repair1.jpg?itok=8zoSGdIA" alt="" style="width:300px;height:350px;">
+    </div>
+    <div class="flip-card-back">
+      <h1>Sheet Rock</h1>
+      <p>Holes in Walls</p>
+      <p>Large Holes</p>
+    </div>
+  </div>
+</div>
+
+<div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <img src="https://i.pinimg.com/originals/ca/bb/60/cabb60a0c74d9297945c6d66291155b0.jpg" alt="" style="width:300px;height:350px;">
+    </div>
+    <div class="flip-card-back">
+      <h1>Cement</h1>
+      <p>Small Jobs</p>
+      <p>Driveway</p>
+    </div>
+  </div>
+</div>
+
+  </div>
+</div>
 
 {% endblock %}

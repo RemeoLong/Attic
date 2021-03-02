@@ -10,67 +10,172 @@
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
-  opacity: 0.7;
+  opacity: 0.8;
   background-color:white;
 }
 
-.hero-text {
-  text-align: center;
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.collapsible {
+  background-color: transparent;
   color: black;
   font-weight: bold;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
 }
+
+.active, .collapsible:hover {
+  background-color: rgb(245,245,245);
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: rgb(245,245,245);
+  color: black;
+}
+
 
 {% endblock %}
 
 {% block body %}
 
 <div class="hero-image">
-   <div class="hero-text">
-
-<h1>Small Rodents Removal</h1>
+  <h1>Small Rodents / Pest Removal</h1>
 <br>
 
 <div class="container">
   <div class="row">
     <div class="col-lg-4">
-      <h3>Mices</h3>
-      <p>During the fall and winter months, mice will try to make their way indoors in search of food, warmth, and
+      <button type="button" class="collapsible"><h3><u>Mice</u></h3></button>
+<div class="content">
+      <p><b><em>During the fall and winter months, mice will try to make their way indoors in search of food, warmth, and
         shelter. Not only can mice chew through walls and destroy food boxes in kitchen cabinets, but they can also
         wreak serious havoc on your home and personal health: They gnaw on wires, carry a slew of bacteria, and can
         worsen allergies and asthma for anyone living in the house. Because mice can travel in walls
         and under floorboards and in other difficult to access places in your home, you may see a lot of mouse damage
-        before you see a mouse.</p>
+        before you see a mouse.</em></b></p>
+</div>
+    </div>
 
-    </div>
+
     <div class="col-lg-4">
-      <h3>Rats</h3>
-      <p>Rats, are one of the most common problems for both homes and businesses. They don’t care how big or how small
+      <button type="button" class="collapsible"><h3><u>Rats</u></h3></button>
+<div class="content">
+      <p><b><em>Rats, are one of the most common problems for both homes and businesses. They don’t care how big or how small
         the building is. They’re happy to work their way into any space where they might make a home. They’ve even been
         known to chew through metal and concrete! They reproduce quickly, forming huge swarms. Each one of those rats
         carries a pheromone in their fur which leaves a trail for other rodents and predators, who will work their way
-        into the same spaces. </p>
-      <p>They usually start appearing in fall and winter. The first thing you’ll notice are the sounds in the attic and
+        into the same spaces. </em></b></p>
+      <p><b><em>They usually start appearing in fall and winter. The first thing you’ll notice are the sounds in the attic and
         walls, but their droppings will start causing problems soon enough if you don’t respond. They can and will soak
-        your entire building down with the smell of urine even as they decimate your attic.</p>
+        your entire building down with the smell of urine even as they decimate your attic.</em></b></p>
     </div>
+      </div>
+
     <div class="col-lg-4">
-      <h3>Racoons & Squirrels</h3>
-      <p>Rats, are one of the most common problems for both homes and businesses. They don’t care how big or how small
-        the building is. They’re happy to work their way into any space where they might make a home. They’ve even been
-        known to chew through metal and concrete! They reproduce quickly, forming huge swarms. Each one of those rats
-        carries a pheromone in their fur which leaves a trail for other rodents and predators, who will work their way
-        into the same spaces. </p>
-      <p>They usually start appearing in fall and winter. The first thing you’ll notice are the sounds in the attic and
-        walls, but their droppings will start causing problems soon enough if you don’t respond. They can and will soak
-        your entire building down with the smell of urine even as they decimate your attic.</p>
+      <button type="button" class="collapsible"><h3><u>Racoons</u></h3></button>
+<div class="content">
+      <p><b><em>Raccoons in the wild may not pose a problem, but when they decide to hang out at your place it can be a
+        different story. These mammals can carry canine distemper, which can be hazardous to unvaccinated dogs, and
+        rabies, which can be transmitted to people or other animals. Moreover, their feces often contain the eggs of
+        Baylisascaris procynis, which is a type of roundworm that can be extremely harmful to people. Getting rid of
+        raccoons and their droppings is not always easy, but there are several methods of raccoon removal that can be
+        employed.</em></b></p>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <button type="button" class="collapsible"><h3><u>Squirrels</u></h3></button>
+<div class="content">
+      <p><b><em>Squirrels are a common nuisance pest animal in Houston. Once they get into your home they can become
+        much more than a nuisance. </em></b></p>
+      <p><b><em>Squirrels love to make your attic their home. They will do most anything to get into your attic. This
+        includes tearing up the roof, siding, vents in search of a dry location; especially during breeding season.
+        Once in the attic they will tear up insulation and drywall to build a nest for their young. Because the attic is a
+        usually quiet place, they are free to raise their family undisturbed.</em></b></p>
       </div>
   </div>
+
+    <div class="col-lg-4">
+      <button type="button" class="collapsible"><h3><u>Skunks</u></h3></button>
+<div class="content">
+      <p><b><em>Skunk removal is always best left to the professionals.</em></b></p>
+      <p><b><em>Aside from dealing with the well-known smell of skunk spray and possibly tending to nasty bite and
+        scratch wounds, Skunks are a primary source of rabies in many areas of the United States. Human and domestic pet
+        contact with skunks should be avoided. If it is necessary to handle a skunk, take all precautions to keep from
+        being bitten or scratched. Several other types of diseases and parasites affect skunks such as distemper, mange,
+        fleas, ticks, lice, roundworms and tapeworms. </em></b></p>
+      <p><b><em>Skunks can also be carriers of other diseases including leptospirosis, listeriosis, canine distemper,
+        canine hepatitis, Q-fever, and tularemia</em></b></p>
+      </div>
+  </div>
+
+    <div class="col-lg-4">
+      <button type="button" class="collapsible"><h3><u>Snakes</u></h3></button>
+<div class="content">
+      <p><b><em>Snakes are the most feared pest in the world. There are 2,700 species of snakes worldwide with 250 of
+        those species residing in the United States. The majority of snakes in the U.S. are not venomous; however, poisonous
+        snake sightings occur often. Snakes attempt to avoid people as a general rule, but the majority of them will bite
+        when threatened or surprised.</em></b></p>
+      <p><b><em>Snakes can commonly become a nuisance to homeowners. They can be found getting into crawlspaces, attics
+        or even inside the home. These issues are typically caused by an underlying problem. These are best identified
+        and resolved by a wildlife professional.</em></b></p>
+      </div>
+  </div>
+
+    <div class="col-lg-4">
+      <button type="button" class="collapsible"><h3><u>Bats</u></h3></button>
+<div class="content">
+      <p><b><em>Homeowners should contact a licensed pest professional if an active bat infestation is suspected, as the
+        problem often cannot be controlled with do-it-yourself measures.</em></b></p>
+      <p><b><em>Many bats like to roost in high or dark places, which could include many spots in a home. They often
+        find their way underneath eaves and hideaway in attics. They can make homes in chimneys, find open spots in roofs,
+        or slip through small holes. Often, a loose bat can get stuck in your home, through a crack or hole, causing
+        stress for both you and the bat. While they don’t intentionally wish to cause harm, bats can cause a lot of
+        problems for homeowners.</em></b></p>
+      </div>
+  </div>
+
+    <div class="col-lg-4">
+      <button type="button" class="collapsible"><h3><u>Birds</u></h3></button>
+<div class="content">
+      <p><b><em>Some bird species are considered a real nuisance for homeowners. Most pest birds gain entry into premises
+        through loading bay areas or damaged roofing. They are known to cause property damage by dislodging roof tiles,
+        blocking guttering, building nests and leaving droppings that corrode building material.</em></b></p>
+      <p><b><em>Birds can also be aggressive and attack people, especially during the breeding season when they are
+        defending their young. Birds carry fleas, mites, ticks, lice and other biting insects which can spread diseases
+        and pose a serious health risk.</em></b></p>
+      </div>
+  </div>
+  </div>
 </div>
+  <br>
+  <h1>Our Methods For Permanent Removal:</h1>
+
+
+
   </div>
 </div>
 
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
 {% endblock %}
