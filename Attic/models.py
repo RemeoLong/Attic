@@ -17,6 +17,7 @@ class Profile(models.Model):
 
 class Consulation(models.Model):
     email = models.OneToOneField(Profile, on_delete=models.CASCADE)
+    service = models.CharField(max_length=100)
     service_date = models.DateField(default='')
     service_time = models.TimeField(default='')
 

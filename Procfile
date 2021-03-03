@@ -1,1 +1,0 @@
-web: gunicorn Attic:app
