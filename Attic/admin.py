@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Profile, Consulation
+from .models import Profile, Consultation
+
 
 admin.site.register(Profile)
-admin.site.register(Consulation)
+admin.site.register(Consultation)

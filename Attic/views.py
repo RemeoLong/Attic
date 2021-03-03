@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .forms import ConsultForm
 
 
 def index(request):
@@ -10,7 +12,17 @@ def service(request):
 
 
 def consultation(request):
-    return render(request, 'index/consult.html', {})
+    if request.method == "POST":
+        c_form = ConsultForm(request.POST)
+        if c_form.is_valid():
+            c_form.save()
+            messages.success(request, "Your Consultation request has been submitted. Please check your email")
+            return redirect('Index')
+        else:
+            messages.error(request, "Please correct the following errors: ")
+    else:
+        c_form = ConsultForm
+    return render(request, 'index/consult.html', {'c_form': c_form})
 
 
 def faq(request):

@@ -1,8 +1,36 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block style %}
+
+p {
+    text-align: center;
+}
+
+{% endblock %}
+
 {% block body %}
 
-
-
+<div class="Consultation">
+    <h1>Request a Free Consultation</h1>
+    <p>Please fill our the form below:</p>
+       <form class="site-form" action="Reviews" method="post">
+        {% csrf_token %}
+        {{ c_form.as_p }}
+           {% for field in form %}
+      <p>
+        {{ field.label_tag }}<br>
+        {{ field }}
+        {% if field.help_text %}
+          <small style="color: white">{{ field.help_text }}</small>
+        {% endif %}
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+    {% endfor %}
+        <button type="submit">Submit</button>
+    </form>
+    </div>
+<br>
 {% endblock %}
