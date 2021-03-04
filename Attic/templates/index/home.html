@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block style %}
+
 .hero-image {
   background-image: url("static/css/pest.png");
   height: 800px;
@@ -11,31 +12,6 @@
   position: relative;
   opacity: 0.8;
   background-color:transparent;
-}
-
-.collapsible {
-  background-color: transparent;
-  color: black;
-  font-weight: bold;
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 15px;
-}
-
-.active, .collapsible:hover {
-  background-color: rgb(255, 255, 255, 0.5);
-}
-
-.content {
-  padding: 0 18px;
-  display: none;
-  overflow: hidden;
-  background-color: rgb(255, 255, 255, 0.5);
-  color: black;
 }
 
 {% endblock %}
@@ -215,11 +191,8 @@
       not return. If they should, Call us and we will take care of the issue at No Additional Charge.</em></b></p>
 </div>
     </div>
-
-
   </div>
 </div>
-
     </div>
 
 <script>
@@ -238,4 +211,5 @@ for (i = 0; i < coll.length; i++) {
   });
 }
 </script>
+
 {% endblock %}
