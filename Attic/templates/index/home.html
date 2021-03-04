@@ -3,15 +3,14 @@
 
 {% block style %}
 .hero-image {
-  background-image: url("https://setxfamily.com/wp-content/uploads/2020/01/snake-and-rodent-removal-Beaumont-TX.png");
-  background-color: #cccccc;
-  height: 800px;
+  background-image: url("static/css/pest.png");
+  height: auto;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 80%;
   position: relative;
   opacity: 0.8;
-  background-color:white;
+  background-color:transparent;
 }
 
 .collapsible {
@@ -28,17 +27,16 @@
 }
 
 .active, .collapsible:hover {
-  background-color: rgb(245,245,245);
+  background-color: rgb(255, 255, 255, 0.5);
 }
 
 .content {
   padding: 0 18px;
   display: none;
   overflow: hidden;
-  background-color: rgb(245,245,245);
+  background-color: rgb(255, 255, 255, 0.5);
   color: black;
 }
-
 
 {% endblock %}
 
@@ -221,6 +219,8 @@
 
   </div>
 </div>
+
+    </div>
 
 <script>
 var coll = document.getElementsByClassName("collapsible");
