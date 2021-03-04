@@ -15,17 +15,22 @@
 
   <style>
     .jumbotron {
-   background: url() no-repeat 100%;
-   -webkit-background-size: 100% 100%;
-    -moz-background-size: 100% 100%;
-    -o-background-size: 100% 100%;
-    max-width: 100%;
     height: auto;
+    max-width: 100%;
     margin-bottom:0;
+    background-image: url(static/css/Attic.png), url(static/css/Attic.png);
+    background-repeat: no-repeat, no-repeat;
+    background-position: right, left;
+    background-color: #da9f28;
   }
 
   h1 {
   text-align: center;
+  color: #111857
+  }
+
+  p {
+  color: #111857
   }
 
   {% block style %}
@@ -38,19 +43,19 @@
 <nav class="navbar navbar-expand-sm bg-light justify-content-center">
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a class="nav-link" href="{% url 'Index' %}">Home</a>
+      <a class="nav-link" href="{% url 'Index' %}"><p>Home</p></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="{% url 'Services' %}">Additional Services</a>
+      <a class="nav-link" href="{% url 'Services' %}"><p>Additional Services</p></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="{% url 'Consultations' %}">Free Consultations</a>
+      <a class="nav-link" href="{% url 'Consultations' %}"><p>Free Consultations</p></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="{% url 'FAQ' %}">FAQ</a>
+      <a class="nav-link" href="{% url 'FAQ' %}"><p>FAQ</p></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="{% url 'Reviews' %}">Reviews</a>
+      <a class="nav-link" href="{% url 'Reviews' %}"><p>Reviews</p></a>
     </li>
     <li class="nav-item">
       <p>Call Us at (346) 719-2823</p>
@@ -59,6 +64,7 @@
 </nav>
 
 <div class="jumbotron text-center">
+  <div style="background-image: background: url(static/css/Attic.png) no-repeat 100%; background-position: right; max-width: 100%; height: auto; margin-bottom:0;"></div>
   <h1>Attic Restorations</h1>
   <p><b>Specializing in Wildlife Removal</b></p>
   <p><b>We also provide other Services: (Insulation, Construction, etc). Check out Additional Services for more information.</b></p>

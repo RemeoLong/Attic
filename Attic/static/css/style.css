@@ -1,6 +1,6 @@
 .collapsible {
-  background-color: transparent;
-  color: black;
+  background-color:transparent;
+  color: #111857;
   font-weight: bold;
   cursor: pointer;
   padding: 18px;
@@ -20,7 +20,7 @@
   display: none;
   overflow: hidden;
   background-color: rgb(255, 255, 255, 0.5);
-  color: black;
+  color: #111857;
 }
 
 .grid {
@@ -35,7 +35,7 @@
 
 .flip-card {
   background-color: transparent;
-  width: 300px;
+  width: 350px;
   height: 350px;
   perspective: 1000px;
 }

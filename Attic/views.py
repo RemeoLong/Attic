@@ -17,7 +17,7 @@ def consultation(request):
         if c_form.is_valid():
             c_form.save()
             messages.success(request, "Your Consultation request has been submitted. Please check your email")
-            return redirect('Index')
+            return redirect('Consultations')
         else:
             messages.error(request, "Please correct the following errors: ")
     else:
