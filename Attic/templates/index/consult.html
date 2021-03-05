@@ -1,14 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block style %}
-
-p {
-    text-align: center;
-}
-
-{% endblock %}
-
 {% block body %}
 
 <div class="Consultation">
@@ -16,7 +8,7 @@ p {
     <p>Please fill out the form below:</p>
        <form class="site-form" action="Reviews" method="post">
         {% csrf_token %}
-        {{ c_form.as_p }}
+        <medium style="text-align: center;">{{ c_form.as_p }}</medium>
            {% for field in form %}
       <p>
         {{ field.label_tag }}<br>
