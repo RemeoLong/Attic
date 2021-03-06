@@ -8,7 +8,7 @@
     <p>Please fill out the form below:</p>
        <form class="site-form" action="Reviews" method="post">
         {% csrf_token %}
-        <medium style="text-align: center;">{{ c_form.as_p }}</medium>
+        <large style="text-align: center;">{{ c_form.as_p }}</large>
            {% for field in form %}
       <p>
         {{ field.label_tag }}<br>
