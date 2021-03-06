@@ -26,7 +26,7 @@
 
   h1 {
     text-align: center;
-    color: #111857
+    color: #111857;
   }
 
   p {
@@ -68,7 +68,7 @@
   <h1>Attic Restorations</h1>
   <p><b>Specializing in Wildlife Removal</b></p>
   <p><b>We also provide other Services: (Insulation, Construction, etc).</b></p>
-  <p><b>Check out Additional Services for more information.</b></p>
+  <p><b>Check out <a href="{% url 'Services' %}">Additional Services</a> for more information.</b></p>
 </div>
 {% block body %}
   {% endblock %}

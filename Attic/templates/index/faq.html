@@ -1,8 +1,100 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block style %}
+
+.center {
+  margin: auto;
+  width: 20%;
+  padding: 10px;
+}
+
+biv {
+    border-width:5px;
+    border-style:double;
+}
+
+{% endblock %}
+
 {% block body %}
 
+<h1>Frequency Asked Questions:</h1>
 
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+        
+      <button type="button" class="collapsible"><h1>&#187; Why Do Need A Free Inspection Before I Can Get A Price Quote? &#171;</h1></button>
+<div class="content">
+      <p><b><em>When a client inquires about a professional pest management service, many times the first question is
+          how much the service will cost. However, no two homes or two pest problems are exactly alike nor are two pest
+          control companies exactly the same.</em></b></p>
+      <p><b><em>At Attic Restorations, we customize your treatment program based on the specific information found
+          during the free inspection process. Our professional pest control technicians will conduct a thorough
+          inspection of your home and property and provide you with a detailed report outlining recommendations for
+          elimination of the initial pest problem and prevention of future infestations. They will also point out areas
+          that require your attention. This inspection is free and helps us to provide you with an accurate price quote
+          for the solution to your pest problem.</em></b></p>
+</div>
+    </div>
+
+    <div class="col-lg-12">
+      <button type="button" class="collapsible"><h1>&#187; Can I Spray And Get Rid Of My Pest Problem? &#171;</h1></button>
+<div class="content">
+      <p><b><em>Inexperienced applications of over-the-counter pest control products are usually ineffective and can
+          also be unsafe for pets, children and adults if used improperly. Also, most pests return unless you take steps
+          to prevent them. In as little as 30 days, new infestations can develop.</em></b></p>
+      <p><b><em>The only effective way to eliminate and prevent new infestations is to use a reputable pest prevention
+          company with an ongoing service plan</em></b></p>
+      </div>
+  </div>
+
+    <div class="col-lg-12">
+      <button type="button" class="collapsible"><h1>&#187; Why Should I Hire A Professional Pest Control Firm? &#171;</h1></button>
+<div class="content">
+      <p><b><em>By the time you make the decision to look into pest management services, you have most likely tried it
+          yourself (over-the-counter treatments can kill some pests but are not as effective at providing continuous
+          prevention from re-infestation) and found that most pests are relentless. Most homeowners also lack the time
+          and expertise to handle specific pest situations that are encountered in and around the home or office.</em></b></p>
+      <p><b><em>At Attic Restorations, our pest professionals are trained in the safe handling and proper application
+          of pest treatments. Our entire team is educated and trained in the elimination of your specific pest problem
+          and the prevention of its return.</em></b></p>
+      </div>
+  </div>
+
+   <div class="col-lg-12">
+      <button type="button" class="collapsible"><h1>&#187; How Soon Before We Can Expect Results? &#171;</h1></button>
+<div class="content">
+      <p><b><em>You will see a noticeable reduction in pest activity within one to two days. Depending on the pest and
+          the choice of materials necessary to give the best long term results, it is not unusual to notice a gradual
+          reduction up to 14 days.</em></b></p>
+      <p><b><em>If you notice pest activity after 7 days, please call our office to set up a free follow-up service.
+          On-going pest monitoring is part of our service and is the best way to detect new pest problems. Our goal is
+          your total satisfaction!</em></b></p>
+      </div>
+  </div>
+
+
+
+
+  </div>
+</div>
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
 
 {% endblock %}
