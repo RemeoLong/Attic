@@ -1,3 +1,7 @@
+.navbar-nav > .active > a {
+    background-color: #e19528;
+}
+
 .collapsible {
   background-color:transparent;
   color: #111857;
@@ -34,7 +38,7 @@
 }
 
 .flip-card {
-  background-color: transparent;
+  background-color: #e19528;
   width: 350px;
   height: 350px;
   perspective: 1000px;
@@ -68,8 +72,16 @@
 }
 
 .flip-card-back {
-  background-color: gray;
+  background-color: white;
   color: white;
   transform: rotateY(180deg);
 }
 
+div.ex1 {
+  background-color: #e19528;
+}
+
+div.ex2 {
+  width: 1000px;
+  margin: auto;
+}

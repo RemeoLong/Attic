@@ -3,9 +3,11 @@
 
 {% block body %}
 
+<div class="ex1">
 <div class="Consultation">
     <h1>Request a Free Consultation</h1>
     <p>Please fill out the form below:</p>
+    <div class="ex2">
        <form class="site-form" action="Reviews" method="post">
         {% csrf_token %}
         <large style="text-align: center;">{{ c_form.as_p }}</large>

@@ -22,6 +22,7 @@ class Consultation(models.Model):
         ("RAC", "Pest: Racoons"),
         ("PSQ", "Pest: Squirrels"),
         ("PSK", "Pest: Skunks"),
+        ("POP", "Pest: Opossums"),
         ("PSN", "Pest: Snakes"),
         ("PBA", "Pest: Bats"),
         ("PBI", "Pest: Birds"),
