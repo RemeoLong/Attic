@@ -1,7 +1,3 @@
-.navbar-nav > .active > a {
-    background-color: #e19528;
-}
-
 .collapsible {
   background-color:transparent;
   color: #111857;
@@ -75,13 +71,4 @@
   background-color: white;
   color: white;
   transform: rotateY(180deg);
-}
-
-div.ex1 {
-  background-color: #e19528;
-}
-
-div.ex2 {
-  width: 1000px;
-  margin: auto;
 }
