@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+
+<div class="ex1">
+    <div class="ex2">
+
+        <h1>Thank you for submitting our Consultation Form. We will be in contact with you shortly to schedule an
+            appointment at your earliest convenience.</h1>
+        <p>You'll be Redirect to our Frequency Asked Questions page.....</p>
+
+    </div>
+</div>
+
+<script>
+         setTimeout(function(){
+            window.location.href ={% url 'FAQ' %};
+         }, 5000);
+      </script>
+{% endblock %}

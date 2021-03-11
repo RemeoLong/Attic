@@ -17,27 +17,27 @@ class Profile(models.Model):
 
 class Consultation(models.Model):
     service_choices = (
-        ("MIC", "Pest: Mice"),
-        ("RAT", "Pest: Rats"),
-        ("RAC", "Pest: Racoons"),
-        ("PSQ", "Pest: Squirrels"),
-        ("PSK", "Pest: Skunks"),
-        ("POP", "Pest: Opossums"),
-        ("PSN", "Pest: Snakes"),
-        ("PBA", "Pest: Bats"),
-        ("PBI", "Pest: Birds"),
-        ("CC", "Construction"),
-        ("RR", "Roofing Repair"),
-        ("II", "Insulation Install"),
-        ("SR", "Sheet Rock"),
-        ("CEM", "Cement Small Jobs"),
+        ("Pest: Mice", "Pest: Mice"),
+        ("Pest: Rats", "Pest: Rats"),
+        ("Pest: Racoons", "Pest: Racoons"),
+        ("Pest: Squirrels", "Pest: Squirrels"),
+        ("Pest: Skunks", "Pest: Skunks"),
+        ("Pest: Opossums", "Pest: Opossums"),
+        ("Pest: Snakes", "Pest: Snakes"),
+        ("Pest: Bats", "Pest: Bats"),
+        ("Pest: Birds", "Pest: Birds"),
+        ("Construction", "Construction"),
+        ("Roofing Repair", "Roofing Repair"),
+        ("Insulation Install", "Insulation Install"),
+        ("Sheet Rock", "Sheet Rock"),
+        ("Cement Small Jobs", "Cement Small Jobs"),
     )
     email = models.EmailField(max_length=200, unique=True)
     first_name = models.CharField(max_length=50, editable=True)
     last_name = models.CharField(max_length=50, editable=True)
     service_address = models.CharField(max_length=100, editable=True)
     city = models.CharField(max_length=50, editable=True)
-    state = models.CharField(max_length=2, editable=True)
+    state = models.CharField(max_length=20, editable=True)
     zip_code = models.IntegerField(editable=True)
     phone_number = models.IntegerField(editable=True)
     service = models.CharField(max_length=100, choices=service_choices)
