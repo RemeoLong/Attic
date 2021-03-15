@@ -25,7 +25,7 @@ SECRET_KEY = 'rf3=0rzv%q#q=8*qciwfyx9jep99#dyfgb-z)!5l6*^b^sj^^b'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1', '170.39.76.95', '.pythonanywhere.com', '.atticrestorations.biz']
 
 
 # Application definition
@@ -81,7 +81,16 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'NAME': ‘atticres_database’,
+#        'USER': 'atticres_admin',
+#        'PASSWORD': 'NLGo@vSD0Z=d',
+#        'HOST': '170.39.76.95',
+#        'PORT': '5432',
+#    }
+#}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -128,8 +137,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 DEFAULT_FROM_EMAIL = 'admin@atticrestorations.biz'
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST = 'mail.atticrestorations.biz'
+EMAIL_HOST_USER = 'admin@atticrestorations.biz'
 EMAIL_HOST_PASSWORD = '83@+r;v=-U.Xcs48'
-EMAIL_PORT = 587
+EMAIL_PORT = 993
 EMAIL_USE_TLS = True
+
+SECURE_SSL_REDIRECT = True

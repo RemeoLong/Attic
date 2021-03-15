@@ -18,6 +18,7 @@ def consultation(request):
         form = ConsultForm(request.POST)
         if form.is_valid():
             subject = "Consultations Request"
+            from_email = form.cleaned_data['from_email']
             body = {
                 'first_name': form.cleaned_data['first_name'],
                 'last_name': form.cleaned_data['last_name'],
@@ -32,7 +33,8 @@ def consultation(request):
             form.save()
 
             try:
-                send_mail(subject, message, 'from:remeolong@yahoo.com', ['remeolong82@yahoo.com'])
+                send_mail(subject, message, from_email, ['jaylon@atticrestorations.biz',
+                                                         'admin@atticrestorations.biz'])
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
             return redirect('Success')
