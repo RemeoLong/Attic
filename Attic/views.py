@@ -33,8 +33,7 @@ def consultation(request):
             form.save()
 
             try:
-                send_mail(subject, message, from_email, ['jaylon@atticrestorations.biz',
-                                                         'admin@atticrestorations.biz'])
+                send_mail(subject, message, from_email, ['admin@atticrestorations.biz'])
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
             return redirect('Success')
