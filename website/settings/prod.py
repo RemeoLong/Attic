@@ -16,10 +16,4 @@ DATABASES = {
     }
 }
 
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-DEFAULT_FROM_EMAIL = 'admin@atticrestorations.biz'
-EMAIL_HOST = os.environ["Email_host"]
-EMAIL_HOST_USER = os.environ["Email_user"]
-EMAIL_HOST_PASSWORD = os.environ["Email_pass"]
-EMAIL_PORT = os.environ["Email_port"]
-EMAIL_USE_TLS = True
+
