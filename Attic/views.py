@@ -25,10 +25,11 @@ def consultation(request):
                 'phone': form.cleaned_data['phone_number'],
                 'services': form.cleaned_data['service'],
                 'address': form.cleaned_data['service_address'],
+                'city': form.cleaned_data['city'],
                 'zipcode': form.cleaned_data['zip_code'],
                 'comment': form.cleaned_data['comment'],
             }
-            message = "\n".join(str(body.values()))
+            message = "\n".join(body.values())
             form.save()
 
             try:

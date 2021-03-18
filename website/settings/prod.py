@@ -3,7 +3,7 @@ from .base import *
 
 SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 DEBUG = False
-ALLOWED_HOSTS = ['170.39.76.95',  '.atticrestorations.biz']
+ALLOWED_HOSTS = ['170.39.76.95', '.atticrestorations.biz']
 
 DATABASES = {
     'default': {
@@ -16,4 +16,8 @@ DATABASES = {
     }
 }
 
-
+EMAIL_BACKEND = 'django_ses.SESBackend'
+AWS_ACCESS_KEY_ID = os.environ["AWS_ACCESS_KEY_ID"]
+AWS_SECRET_ACCESS_KEY = os.environ["AWS_SECRET_ACCESS_KEY"]
+AWS_SES_REGION_NAME = 'us-east-2'
+AWS_SES_REGION_ENDPOINT ='email.us-east-2.amazonaws.com'
