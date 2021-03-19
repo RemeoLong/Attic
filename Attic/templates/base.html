@@ -15,12 +15,12 @@
 
   <style>
   .jumbotron {
-    height: auto;
+    height: 250px;
     max-width: 100%;
     margin-bottom:0;
-    background-image: url(static/css/Attic.png), url(static/css/Attic.png);
-    background-repeat: no-repeat, no-repeat;
-    background-position: right, left;
+    background-image: url(static/css/Logo.png);
+    background-repeat: no-repeat;
+    background-position: center;
     background-color: #e19528;
   }
 
@@ -36,6 +36,7 @@
 
   .navbar-nav > .active > a {
     background-color: #e19528;
+    max-width: 100%;
 }
 
   div.ex1 {
@@ -58,7 +59,7 @@
 <body>
 
 <nav class="navbar navbar-expand-sm bg-light justify-content-center">
-  <ul class="navbar-nav">
+  <ul class="navbar-nav active" style="background-color: #e19528;">
     <li class="nav-item active">
       <a class="nav-link" href="{% url 'Index' %}"><p><b>Home</b></p></a>
     </li>
@@ -81,11 +82,8 @@
 </nav>
 
 <div class="jumbotron text-center">
-  <h1>Attic Restorations</h1>
-  <p><b>Specializing in Wildlife Removal</b></p>
-  <p><b>We also provide other Services: (Insulation, Construction, etc).</b></p>
-  <p><b>Check out <a href="{% url 'Services' %}">Additional Services</a> for more information.</b></p>
-</div>
+  </div>
+
 {% block body %}
   {% endblock %}
 </div>
