@@ -3,7 +3,7 @@ from .base import *
 
 SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 DEBUG = False
-ALLOWED_HOSTS = ['170.39.76.95', '.atticrestorations.biz']
+ALLOWED_HOSTS = ['170.39.76.95', '.atticrestorations.biz', 'ns79.stableserver.net']
 
 DATABASES = {
     'default': {
