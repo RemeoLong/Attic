@@ -31,6 +31,24 @@ class Consultation(models.Model):
     comment = models.TextField(default='')
     customer = models.BooleanField(default=False)
 
+    class Meta:
+        ordering = ('email', 'first_name', 'last_name', 'phone_number', 'service_address')
+
+    def __str__(self):
+        return self.email
+
+    def __str__(self):
+        return self.first_name
+
+    def __str__(self):
+        return self.last_name
+
+    def __str__(self):
+        return self.phone_number
+
+    def __str__(self):
+        return self.service_address
+
 
 class Profile(models.Model):
     email = models.EmailField(max_length=200, unique=True)

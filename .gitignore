@@ -6,3 +6,7 @@ myvenv
 db.sqlite3
 .DS_Store
 .env
+passenger_wsgi.py
+wsgi.py
+local.py
+manage.py
