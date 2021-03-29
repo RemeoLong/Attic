@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.dispatch import receiver
 
 
 class Consultation(models.Model):
@@ -31,6 +32,13 @@ class Consultation(models.Model):
     comment = models.TextField(default='')
     customer = models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.Consultations
+
+    @property
+    def consult_filtering(self):
+        return Consultation.objects.all().filter(Consltation_id=self.id)
+
     class Meta:
         ordering = ('email', 'first_name', 'last_name', 'phone_number', 'service_address')
 
@@ -49,8 +57,18 @@ class Consultation(models.Model):
     def __str__(self):
         return self.service_address
 
+    #@receiver(post_save, sender=Consultation
+    #def create_profile(sender, instance, **kwargs):
+    #    if created:
+    #        Profile.objects.create(user=instance)
+
+    #@receiver(post_save, sender=Consultation)
+    #def save_profile(sender, instance, **kwargs):
+    #    instance.profile.save()
+
 
 class Profile(models.Model):
+    customer = models.ForeignKey(Consultation, on_delete=models.CASCADE, default='')
     email = models.EmailField(max_length=200, unique=True)
     first_name = models.CharField(max_length=50, editable=True)
     last_name = models.CharField(max_length=50, editable=True)
@@ -59,7 +77,36 @@ class Profile(models.Model):
     state = models.CharField(max_length=2, editable=True)
     zip_code = models.CharField(max_length=10, editable=True)
     phone_number = models.CharField(max_length=15, editable=True)
-    consult_date = models.DateField()
-    warranty_date = models.DateField()
+    consult_date = models.DateField(default='')
+    warranty_date = models.DateField(default='')
 
+    def __str__(self):
+        return self.Profile
 
+    @property
+    def profile_filtering(self):
+        return Consultation.objects.all().filter(Profile_id=self.id)
+
+    class Meta:
+        ordering = ('email', 'first_name', 'last_name', 'phone_number', 'service_address')
+
+    def __str__(self):
+        return self.email
+
+    def __str__(self):
+        return self.first_name
+
+    def __str__(self):
+        return self.last_name
+
+    def __str__(self):
+        return self.phone_number
+
+    def __str__(self):
+        return self.service_address
+
+    def __str__(self):
+        return self.consult_date
+
+    def __str__(self):
+        return self.warranty_date

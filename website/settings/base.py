@@ -18,6 +18,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 
 INSTALLED_APPS = [
     'Attic.apps.AtticConfig',
+    'Appointment.apps.AppointmentConfig',
+    'Dashboard.apps.DashboardConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

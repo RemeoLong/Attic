@@ -1,6 +1,6 @@
 from .base import *
 
-SECRET_KEY = 'rf3=0rzv%q#q=8*qciwfyx9jep99#dyfgb-z)!5l6*^b^sj^^b'
+SECRET_KEY = '*bb2re7mx&u5xpgml!j734+dv#u((wy^76rkg+tt3cgko3qs-_'
 DEBUG = True
 ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
 
