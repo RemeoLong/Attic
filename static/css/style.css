@@ -1,0 +1,100 @@
+.collapsible {
+  background-color:transparent;
+  color: #111857;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: rgb(255, 255, 255, 0.5);
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: rgb(255, 255, 255, 0.5);
+  color: #111857;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  justify-content: space-evenly;
+  align-items: center;
+  grid-gap: 15px;
+  max-width: 100%;
+  height: 100%;
+}
+
+.flip-card {
+  background-color: #e19528;
+  width: 350px;
+  max-width: 100%;
+  height: 350px;
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  background-color: #bbb;
+  color: black;
+}
+
+.flip-card-back {
+  background-color: white;
+  color: white;
+  transform: rotateY(180deg);
+}
+
+
+.fa-facebook {
+  background: #e19528;
+  color: #111857;
+}
+
+.fa-instagram {
+  background: #e19528;
+  color: #111857;
+}
+
+<nav class="navbar navbar-expand-sm bg-light justify-content-left">
+  <ul class="navbar-nav active" style="background-color: #e19528;">
+    <li class="nav-item active">
+      <li1><a href="#" class="fa fa-facebook" style="font-size:00px"></a></li1>
+    </li>
+    <li class="nav-item active">
+      <li1><a href="#" class="fa fa-instagram" style="font-size:00px"></a></li1>
+    </li>
+  </ul>
+</nav>

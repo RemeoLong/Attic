@@ -1,6 +1,6 @@
 from django.db import models
 from Attic.models import Consultation, Profile
-from Appointment.models import Appointment
+from Appointment.models import Consult, FollowUp
 
 
 class Consultation(models.Model):
@@ -12,4 +12,8 @@ class Profile(models.Model):
 
 
 class Appointment(models.Model):
-    consult_date = models.ForeignKey(Appointment, on_delete=models.CASCADE, default='')
+    consult_date = models.ForeignKey(Consult, on_delete=models.CASCADE, default='')
+
+
+class FollowUp(models.Model):
+    profile_id = models. ForeignKey(FollowUp, on_delete=models.CASCADE, default='')

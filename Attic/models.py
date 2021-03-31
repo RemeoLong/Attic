@@ -57,6 +57,12 @@ class Consultation(models.Model):
     def __str__(self):
         return self.service_address
 
+    def __str__(self):
+        return self.consult_date
+
+    def __str__(self):
+        return self.consult_time
+
     #@receiver(post_save, sender=Consultation
     #def create_profile(sender, instance, **kwargs):
     #    if created:
@@ -77,18 +83,19 @@ class Profile(models.Model):
     state = models.CharField(max_length=2, editable=True)
     zip_code = models.CharField(max_length=10, editable=True)
     phone_number = models.CharField(max_length=15, editable=True)
-    consult_date = models.DateField(default='')
-    warranty_date = models.DateField(default='')
+    services = models.CharField(max_length=50, editable=True)
+    warranty_start_date = models.DateField(default='')
+    warranty_end_date = models.DateField(default='')
 
     def __str__(self):
         return self.Profile
 
     @property
     def profile_filtering(self):
-        return Consultation.objects.all().filter(Profile_id=self.id)
+        return Profile.objects.all().filter(Profile_id=self.id)
 
     class Meta:
-        ordering = ('email', 'first_name', 'last_name', 'phone_number', 'service_address')
+        ordering = ('email', 'first_name', 'last_name', 'phone_number', 'service_address', 'warranty_end_date')
 
     def __str__(self):
         return self.email
@@ -106,7 +113,4 @@ class Profile(models.Model):
         return self.service_address
 
     def __str__(self):
-        return self.consult_date
-
-    def __str__(self):
-        return self.warranty_date
+        return self.warranty_end_date

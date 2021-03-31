@@ -21,6 +21,8 @@ class ConsultForm(forms.ModelForm):
                                widget=forms.TextInput(attrs={'class': "form-control"}))
     comment = forms.CharField(label='Additional Comments (Not Required)', max_length=500, required=False,
                               widget=forms.Textarea)
+    consult_date = forms.DateField(label='Date', required=True, widget=forms.DateInput(attrs={'class': "form-control"}))
+    consult_time = forms.TimeField(label='Date', required=True, widget=forms.TimeInput())
 
     class Meta:
         model = Consultation

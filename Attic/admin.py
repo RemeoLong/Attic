@@ -6,5 +6,9 @@ class ConsultationAdmin(admin.ModelAdmin):
     list_display = ('email', 'first_name', 'last_name', 'phone_number', 'service_address')
 
 
-admin.site.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ('email', 'first_name', 'last_name', 'phone_number', 'service_address')
+
+
+admin.site.register(Profile, ProfileAdmin)
 admin.site.register(Consultation, ConsultationAdmin)

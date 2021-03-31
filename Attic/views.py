@@ -52,5 +52,3 @@ def faq(request):
 
 def reviews(request):
     return render(request, 'index/reviews.html', {})
-
-
