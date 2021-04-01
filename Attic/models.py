@@ -33,7 +33,7 @@ class Consultation(models.Model):
     customer = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.Consultations
+        return self.Consultation
 
     @property
     def consult_filtering(self):
