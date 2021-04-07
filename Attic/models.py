@@ -1,6 +1,9 @@
 from django.conf import settings
+from django.contrib.auth.models import User
 from django.db import models
+from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.urls import reverse
 
 
 class Consultation(models.Model):
@@ -63,32 +66,48 @@ class Consultation(models.Model):
     def __str__(self):
         return self.consult_time
 
-    #@receiver(post_save, sender=Consultation
+    #@receiver(post_save, sender=User)
     #def create_profile(sender, instance, **kwargs):
     #    if created:
     #        Profile.objects.create(user=instance)
 
-    #@receiver(post_save, sender=Consultation)
+    #@receiver(post_save, sender=User)
     #def save_profile(sender, instance, **kwargs):
     #    instance.profile.save()
 
 
 class Profile(models.Model):
-    customer = models.ForeignKey(Consultation, on_delete=models.CASCADE, default='')
+    service_choices = (
+        ("Pest: Mice", "Pest: Mice"),
+        ("Pest: Rats", "Pest: Rats"),
+        ("Pest: Racoons", "Pest: Racoons"),
+        ("Pest: Squirrels", "Pest: Squirrels"),
+        ("Pest: Skunks", "Pest: Skunks"),
+        ("Pest: Opossums", "Pest: Opossums"),
+        ("Pest: Snakes", "Pest: Snakes"),
+        ("Pest: Bats", "Pest: Bats"),
+        ("Pest: Birds", "Pest: Birds"),
+        ("Construction", "Construction"),
+        ("Roofing Repair", "Roofing Repair"),
+        ("Insulation Install", "Insulation Install"),
+        ("Sheet Rock", "Sheet Rock"),
+        ("Cement Small Jobs", "Cement Small Jobs"),
+    )
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     email = models.EmailField(max_length=200, unique=True)
     first_name = models.CharField(max_length=50, editable=True)
     last_name = models.CharField(max_length=50, editable=True)
-    service_address = models.CharField(max_length=100, editable=True)
-    city = models.CharField(max_length=50, editable=True)
-    state = models.CharField(max_length=2, editable=True)
-    zip_code = models.CharField(max_length=10, editable=True)
+    service_address = models.CharField(max_length=100)
+    city = models.CharField(max_length=50)
+    state = models.CharField(max_length=25)
+    zip_code = models.CharField(max_length=10)
     phone_number = models.CharField(max_length=15, editable=True)
-    services = models.CharField(max_length=50, editable=True)
+    services = models.CharField(max_length=50, default='', editable=True, choices=service_choices)
+    additional_service = models.CharField(max_length=50, default='', editable=True, choices=service_choices)
     warranty_start_date = models.DateField(default='')
     warranty_end_date = models.DateField(default='')
-
-    def __str__(self):
-        return self.Profile
+    warranty = models.FileField(default='')
+    invoice = models.FileField(default='')
 
     @property
     def profile_filtering(self):
@@ -114,3 +133,6 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.warranty_end_date
+
+    def get_absolute_url(self):
+        return reverse('Profile', args=[str(self.id)])

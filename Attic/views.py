@@ -1,8 +1,11 @@
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from .forms import ConsultForm
+from django.views.generic import ListView, DetailView
+
+from .forms import ConsultForm, EditProfileForm
+from .models import Profile
 
 
 def index(request):
@@ -11,6 +14,22 @@ def index(request):
 
 def service(request):
     return render(request, 'index/services.html', {})
+
+
+def success(request):
+    return render(request, 'index/success.html', {})
+
+
+def edit_success(request):
+    return render(request, 'index/edit_success.html', {})
+
+
+def faq(request):
+    return render(request, 'index/faq.html', {})
+
+
+def reviews(request):
+    return render(request, 'index/reviews.html', {})
 
 
 def consultation(request):
@@ -42,13 +61,18 @@ def consultation(request):
     return render(request, "index/consult.html", {'form': form})
 
 
-def success(request):
-    return render(request, 'index/success.html', {})
+class ProfileDetailView(DetailView):
+    model = Profile
+    template_name = 'index/profile.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
 
 
-def faq(request):
-    return render(request, 'index/faq.html', {})
+class EditProfileView(DetailView):
+    model = Profile
+    template_name = 'index/edit_profile.html'
 
 
-def reviews(request):
-    return render(request, 'index/reviews.html', {})
+

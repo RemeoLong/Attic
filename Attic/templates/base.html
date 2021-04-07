@@ -76,7 +76,7 @@ img.avatar {
 
 .container {
   text-align: center;
-  max-width: 900px;
+  max-width: 1150px;
 }
 
 span.psw {
@@ -93,6 +93,21 @@ span.psw {
 
 <nav class="navbar navbar-expand-sm bg-light justify-content-center">
   <ul class="navbar-nav active" style="background-color: #e19528;">
+  {% if user.is_authenticated %}
+    <li class="nav-item active">
+     <a class="nav-link"><p><b>User: {{ user.get_username }}</b></p></a>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link" href="{profile.get_absolute_url}"><p><b>Profile</b></p></a>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link" href="{}"><p><b>Book A Follow Up</b></p></a>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link" href="{% url 'logout' %}"><p><b>Log Out</b></p></a>
+    </li>
+
+    {% else %}
     <li class="nav-item active">
       <a class="nav-link" href="{% url 'Index' %}"><p><b>Home</b></p></a>
     </li>
@@ -111,14 +126,6 @@ span.psw {
     <li class="nav-item active">
       <a class="nav-link" href=""><p><b>Call Us at (346) 719-2823</b></p></a>
     </li>
-    {% if user.is_authenticated %}
-    <li class="nav-item active">
-     <a class="nav-link"><p><b>User: {{ user.get_username }}</b></p></a>
-    </li>
-    <li class="nav-item active">
-      <a class="nav-link" href="{% url 'logout' %}"><p><b>Log Out</b></p></a>
-    </li>
-    {% else %}
     <button onclick="document.getElementById('id01').style.display='block'" style="width:auto; background-color: #e19528;"><p><b>Login</b></p></button>
     {% endif %}
 </ul>

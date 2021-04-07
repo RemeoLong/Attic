@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+
+<div class="ex1">
+    <div class="ex2">
+
+        {% username %}
+        {% email %}
+        {% first_name %} {% last_name %}
+        {% phone_number %}
+        {% service_address %}
+        {% city %}, {% state %}, {% zip_code %}
+        {% service %}
+
+        <button>Edit Button</button>
+
+    </div>
+</div>
+
+
+{% endblock %}

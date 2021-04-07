@@ -20,7 +20,7 @@ class ConsultView(ListView):
 
 class ConsultDetailView(DetailView):
     model = Consult
-    template_name = 'index/appointment.html'
+    template_name = 'index/profile.html'
 
     def create(request):
         if request.method == "POST":
@@ -60,7 +60,7 @@ class ConsultDetailView(DetailView):
             return redirect('index/success.html')
         return render(request, template_name, {'form':form})
 
-    def delete(request, pk, template_name='index.delete.html'):
+    def delete(request, pk, template_name='index/delete.html'):
         consult = get_object_or_404(Consultation, pk=pk)
         if request.method == 'POST':
             consult.delete()
