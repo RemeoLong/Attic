@@ -1,23 +1,35 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block style %}
+button {
+    width: 35%;
+}
+{% endblock %}
+
+
 {% block body %}
 
 <div class="ex1">
     <div class="ex2">
-
-        {% username %}
-        {% email %}
-        {% first_name %} {% last_name %}
-        {% phone_number %}
-        {% service_address %}
-        {% city %}, {% state %}, {% zip_code %}
-        {% service %}
-
-        <button>Edit Button</button>
-
+    <h1>Customer's Profile</h1>
+        <br>
+        <h1>Scheduled Appointment</h1>
+        <h2>{{ user.consultation.consult_date }} @ {{ user.consultation.consult_time }}</h2>
+        <h2>Email Address: {{ user.email }}</h2>
+        <h2>Name: {{ user.profile.first_name }} {{ user.profile.last_name }}</h2>
+        <h2>Phone Number: {{ user.profile.phone_number }}</h2>
+        <h2>Service Address:</h2>
+        <h2>{{ user.profile.service_address }}</h2>
+        <h2>{{ user.profile.city }}, {{ user.profile.state }} {{ user.profile.zip_code }}</h2>
+        <h2>Service: ({{ user.profile.services }})</h2>
+<br>
+        <p>To edit your Personal Information, Please click on the "Edit" button below.</p>
+        <button type="button">
+    <a href="{% url 'EditProfile' %}">Edit Profile</a>
+</button>
+        <br>
     </div>
 </div>
-
 
 {% endblock %}

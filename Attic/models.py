@@ -103,11 +103,11 @@ class Profile(models.Model):
     zip_code = models.CharField(max_length=10)
     phone_number = models.CharField(max_length=15, editable=True)
     services = models.CharField(max_length=50, default='', editable=True, choices=service_choices)
-    additional_service = models.CharField(max_length=50, default='', editable=True, choices=service_choices)
-    warranty_start_date = models.DateField(default='')
-    warranty_end_date = models.DateField(default='')
-    warranty = models.FileField(default='')
-    invoice = models.FileField(default='')
+    additional_service = models.CharField(max_length=50, null=True, blank=True, editable=True, choices=service_choices)
+    warranty_start_date = models.DateField(null=True, blank=True, default='')
+    warranty_end_date = models.DateField(null=True, blank=True, default='')
+    warranty = models.FileField(null=True, blank=True, default='')
+    invoice = models.FileField(null=True, blank=True, default='')
 
     @property
     def profile_filtering(self):
@@ -130,9 +130,3 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.service_address
-
-    def __str__(self):
-        return self.warranty_end_date
-
-    def get_absolute_url(self):
-        return reverse('Profile', args=[str(self.id)])

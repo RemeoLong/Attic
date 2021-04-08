@@ -31,6 +31,12 @@
     color: #111857;
   }
 
+  h2 {
+    text-align: center;
+    color: #111857;
+    font-size: 25px;
+  }
+
   p {
     color: #111857;
     text-align: center;
@@ -98,7 +104,7 @@ span.psw {
      <a class="nav-link"><p><b>User: {{ user.get_username }}</b></p></a>
     </li>
     <li class="nav-item active">
-      <a class="nav-link" href="{profile.get_absolute_url}"><p><b>Profile</b></p></a>
+      <a class="nav-link" href="{% url 'Profile' %}"><p><b>Profile</b></p></a>
     </li>
     <li class="nav-item active">
       <a class="nav-link" href="{}"><p><b>Book A Follow Up</b></p></a>

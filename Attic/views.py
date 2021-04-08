@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
@@ -61,18 +62,22 @@ def consultation(request):
     return render(request, "index/consult.html", {'form': form})
 
 
-class ProfileDetailView(DetailView):
-    model = Profile
-    template_name = 'index/profile.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
+@login_required
+def profile(request):
+    return render(request, 'index/profile.html', {})
 
 
-class EditProfileView(DetailView):
-    model = Profile
-    template_name = 'index/edit_profile.html'
+@login_required
+def edit_profile(request):
+    if request.method == "POST":
+        form = EditProfileForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+            return redirect('index/edit_success.html')
+        
+    form = EditProfileForm()
+    return render(request, 'index/edit_profile.html', {'form': form})
 
 
 
