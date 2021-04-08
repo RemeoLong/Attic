@@ -30,14 +30,15 @@ class ConsultForm(forms.ModelForm):
 
 
 class EditProfileForm(forms.ModelForm):
-    email = forms.CharField(label='Email Address', max_length=100, required=True,
+    email = forms.CharField(label='Email Address', max_length=100, required=False,
                             widget=forms.TextInput(attrs={'class': "form-control"}))
-    first_name = forms.CharField(label='First Name', max_length=100, required=True,
+    first_name = forms.CharField(label='First Name', max_length=100, required=False,
                                  widget=forms.TextInput(attrs={'class': "form-control"}))
-    last_name = forms.CharField(label='Last Name', max_length=100, required=True,
+    last_name = forms.CharField(label='Last Name', max_length=100, required=False,
                                 widget=forms.TextInput(attrs={'class': "form-control"}))
-    phone_number = forms.CharField(label='Contact Number', max_length=15, required=True,
+    phone_number = forms.CharField(label='Contact Number', max_length=15, required=False,
                                    widget=forms.TextInput(attrs={'class': "form-control"}))
 
-
-
+    class Meta:
+        model = Profile
+        fields = ('email', 'first_name', 'last_name', 'phone_number')

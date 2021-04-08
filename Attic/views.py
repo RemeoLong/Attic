@@ -75,7 +75,7 @@ def edit_profile(request):
             form.save()
 
             return redirect('index/edit_success.html')
-        
+
     form = EditProfileForm()
     return render(request, 'index/edit_profile.html', {'form': form})
 
