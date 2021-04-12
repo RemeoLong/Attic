@@ -1,77 +1,55 @@
 from django import forms
-from .models import Consult, FirstFollowUp, SecondFollowUp, ThirdFollowUp, FourthFollowUp, FifthFollowUp, SixthFollowUp
+from .models import Appointment, FollowUps
 
 
 class AppointmentForm(forms.ModelForm):
     consult_date = forms.DateField(label='Date', required=True, widget=forms.DateInput(attrs={'class': "form-control"}))
-    consult_time = forms.TimeField(label='Date', required=True, widget=forms.TimeInput())
+    consult_time = forms.TimeField(label='Time', required=True, widget=forms.TimeInput())
 
     class Meta:
-        model = Consult
+        model = Appointment
         fields = ('consult_date', 'consult_time')
 
 
-class FirstFollowUpForm(forms.ModelForm):
-    date = forms.DateField(label='Date', required=True, widget=forms.DateInput(attrs={'class': "form-control"}))
-    time = forms.TimeField(label='Date', required=True, widget=forms.TimeInput())
-    comment = forms.CharField(label='Additional Comments (Not Required)', max_length=200, required=False,
-                              widget=forms.Textarea)
+class CreateAppointmentForm(forms.ModelForm):
+    consult = forms.CharField()
+    consult_date = forms.DateField(label='Date', required=True, widget=forms.DateInput(attrs={'class': "form-control"}))
+    consult_time = forms.TimeField(label='Time', required=True, widget=forms.TimeInput())
 
     class Meta:
-        model = FirstFollowUp
-        fields = ('date', 'time', 'comment')
+        model = Appointment
+        fields = ('consult', 'consult_date', 'consult_time')
 
 
-class SecondFollowUpForm(forms.ModelForm):
-    date = forms.DateField(label='Date', required=True, widget=forms.DateInput(attrs={'class': "form-control"}))
-    time = forms.TimeField(label='Date', required=True, widget=forms.TimeInput())
-    comment = forms.CharField(label='Additional Comments (Not Required)', max_length=200, required=False,
-                              widget=forms.Textarea)
+class EditAppointmentForm(forms.ModelForm):
+    consult_date = forms.DateField(label='Date', required=True, widget=forms.DateInput(attrs={'class': "form-control"}))
+    consult_time = forms.TimeField(label='Time', required=True, widget=forms.TimeInput())
 
     class Meta:
-        model = SecondFollowUp
-        fields = ('date', 'time', 'comment')
+        model = Appointment
+        fields = ('consult_date', 'consult_time')
 
 
-class ThirdFollowUpForm(forms.ModelForm):
+class CreateFollowUpForm(forms.ModelForm):
+    profile = forms.CharField()
     date = forms.DateField(label='Date', required=True, widget=forms.DateInput(attrs={'class': "form-control"}))
-    time = forms.TimeField(label='Date', required=True, widget=forms.TimeInput())
-    comment = forms.CharField(label='Additional Comments (Not Required)', max_length=200, required=False,
+    time = forms.TimeField(label='Time', required=True, widget=forms.TimeInput())
+    comment = forms.CharField(label='Comments', max_length=500, required=False,
                               widget=forms.Textarea)
+    status = forms.CharField()
 
     class Meta:
-        model = ThirdFollowUp
-        fields = ('date', 'time', 'comment')
+        model = FollowUps
+        fields = ('profile', 'date', 'time', 'comment', 'status')
 
 
-class FourthFollowUpForm(forms.ModelForm):
+class EditFollowUpsForm(forms.ModelForm):
     date = forms.DateField(label='Date', required=True, widget=forms.DateInput(attrs={'class': "form-control"}))
-    time = forms.TimeField(label='Date', required=True, widget=forms.TimeInput())
-    comment = forms.CharField(label='Additional Comments (Not Required)', max_length=200, required=False,
+    time = forms.TimeField(label='Time', required=True, widget=forms.TimeInput())
+    comment = forms.CharField(label='Comments', max_length=500, required=False,
                               widget=forms.Textarea)
+    status = forms.CharField()
 
     class Meta:
-        model = FourthFollowUp
-        fields = ('date', 'time', 'comment')
-
-
-class FifthFollowUpForm(forms.ModelForm):
-    date = forms.DateField(label='Date', required=True, widget=forms.DateInput(attrs={'class': "form-control"}))
-    time = forms.TimeField(label='Date', required=True, widget=forms.TimeInput())
-    comment = forms.CharField(label='Additional Comments (Not Required)', max_length=200, required=False,
-                              widget=forms.Textarea)
-
-    class Meta:
-        model = FifthFollowUp
-        fields = ('date', 'time', 'comment')
-
-
-class SixthFollowUpForm(forms.ModelForm):
-    date = forms.DateField(label='Date', required=True, widget=forms.DateInput(attrs={'class': "form-control"}))
-    time = forms.TimeField(label='Date', required=True, widget=forms.TimeInput())
-    comment = forms.CharField(label='Additional Comments (Not Required)', max_length=200, required=False,
-                              widget=forms.Textarea)
-
-    class Meta:
-        model = SixthFollowUp
-        fields = ('date', 'time', 'comment')
+        model = FollowUps
+        fields = ('date', 'time', 'comment', 'status')

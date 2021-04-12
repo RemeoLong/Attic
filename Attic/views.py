@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.views.generic import ListView, DetailView
 
-from .forms import ConsultForm, EditProfileForm
+from .forms import ConsultForm, EditProfileForm, CreateProfileForm
 from .models import Profile
 
 
@@ -62,22 +62,52 @@ def consultation(request):
     return render(request, "index/consult.html", {'form': form})
 
 
+#def ProfileListView(ListView):
+
+#def ProfileDetailView(DetailView):
+
+
 @login_required
 def profile(request):
     return render(request, 'index/profile.html', {})
 
 
+def create_profile(request):
+    if request.method == "POST":
+        form = CreateProfileForm(request.POST)
+        if form.is_valid():
+            try:
+                form.save()
+                return redirect('index/profile_success.html')
+            except:
+                pass
+        else:
+            form = CreateProfileForm()
+        return render(request, 'index.profile.html', {'form': form})
+
+
 @login_required
 def edit_profile(request):
     if request.method == "POST":
-        form = EditProfileForm(request.POST)
+        form = EditProfileForm(request.POST, instance=profile)
         if form.is_valid():
             form.save()
-
             return redirect('index/edit_success.html')
+        return render(request, 'index/edit_profile.html', {'profile': profile})
 
     form = EditProfileForm()
     return render(request, 'index/edit_profile.html', {'form': form})
+
+
+def show_all_profile(request):
+    profile = Profile.objects.all()
+    return render(request, 'index/profile_all.html', {'profile': profile})
+
+
+def delete_profile(request, id):
+    profile = Profile.objects.get(id=id)
+    profile.delete()
+    return redirect('index/delete_success.html')
 
 
 
