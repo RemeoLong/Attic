@@ -1,12 +1,13 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from .forms import ConsultForm, EditProfileForm, CreateProfileForm
-from .models import Profile
+from .models import Consultation, Profile
 
 
 def index(request):
@@ -47,6 +48,8 @@ def consultation(request):
                 'address': form.cleaned_data['service_address'],
                 'city': form.cleaned_data['city'],
                 'zipcode': form.cleaned_data['zip_code'],
+                'consult_date': form.cleaned_data['consult_date'],
+                'consult_time': form.cleaned_data['consult_time'],
                 'comment': form.cleaned_data['comment'],
             }
             message = "\n".join(body.values())
@@ -60,11 +63,6 @@ def consultation(request):
 
     form = ConsultForm()
     return render(request, "index/consult.html", {'form': form})
-
-
-#def ProfileListView(ListView):
-
-#def ProfileDetailView(DetailView):
 
 
 @login_required
@@ -104,10 +102,76 @@ def show_all_profile(request):
     return render(request, 'index/profile_all.html', {'profile': profile})
 
 
-def delete_profile(request, id):
-    profile = Profile.objects.get(id=id)
-    profile.delete()
-    return redirect('index/delete_success.html')
+#def delete_profile(request, id):
+#    profile = Profile.objects.get(id=id)
+#    profile.delete()
+#    return redirect('index/delete_success.html')
+
+
+class ProfileListView(LoginRequiredMixin, ListView):
+    model = Profile
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        q = self.request.GET.get("q")
+        if q:
+            return queryset.filter(title__icontains=q)
+
+        return queryset
+
+
+class ProfileDetailView(LoginRequiredMixin, DetailView):
+    model = Profile
+
+
+class ProfileCreateView(LoginRequiredMixin, CreateView):
+    model = Profile
+    fields = ['user', 'email', 'first_name', 'last_name', 'service_address', 'city', 'state', 'zip_code',
+              'phone_number', 'services', 'warranty_start_date']
+
+
+class ProfileUpdateView(LoginRequiredMixin, UpdateView):
+    model = Profile
+    fields = ['email', 'first_name', 'last_name', 'phone_number']
+
+    def post(self, request, *args, **kwargs):
+        form = EditProfileForm(request.POST)
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+
+class ProfileDeleteView(LoginRequiredMixin, DeleteView):
+    model = Profile
+
+
+class ConsultationListView(LoginRequiredMixin, ListView):
+    model = Consultation
+
+
+class ConsultationDetailView(LoginRequiredMixin, DetailView):
+    model = Consultation
+
+
+class ConsultationCreateView(LoginRequiredMixin, CreateView):
+    model = Consultation
+    fields = ['user', 'email', 'first_name', 'last_name', 'service_address', 'city', 'state', 'zip_code',
+              'phone_number', 'services', 'consult_date', 'consult_time', 'comment']
+
+
+class ConsultationUpdateView(LoginRequiredMixin, UpdateView):
+    model = Consultation
+    fields = ['consult_date', 'consult_time']
+
+
+class ConsultationDeleteView(LoginRequiredMixin, DeleteView):
+    model = Consultation
+
+
+
+
 
 
 

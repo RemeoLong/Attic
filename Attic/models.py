@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
@@ -32,6 +34,8 @@ class Consultation(models.Model):
     zip_code = models.CharField(max_length=10, editable=True)
     phone_number = models.CharField(max_length=15, editable=True)
     service = models.CharField(max_length=100, choices=service_choices)
+    consult_date = models.DateField(default='')
+    consult_time = models.TimeField(default='')
     comment = models.TextField(default='')
     customer = models.BooleanField(default=False)
 
@@ -41,6 +45,10 @@ class Consultation(models.Model):
     @property
     def consult_filtering(self):
         return Consultation.objects.all().filter(Consltation_id=self.id)
+
+    @property
+    def today_consult(self):
+        return Consultation.objects.all().filter(date=datetime.today().date)
 
     class Meta:
         ordering = ('email', 'first_name', 'last_name', 'phone_number', 'service_address')
