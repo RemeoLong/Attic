@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.template.defaultfilters import slugify
 from django.urls import reverse
 
 
@@ -34,8 +35,8 @@ class Consultation(models.Model):
     zip_code = models.CharField(max_length=10, editable=True)
     phone_number = models.CharField(max_length=15, editable=True)
     service = models.CharField(max_length=100, choices=service_choices)
-    consult_date = models.DateField(default='')
-    consult_time = models.TimeField(default='')
+    consult_date = models.CharField(max_length=20, default='')
+    consult_time = models.CharField(max_length=20, default='')
     comment = models.TextField(default='')
     customer = models.BooleanField(default=False)
 
@@ -102,6 +103,7 @@ class Profile(models.Model):
         ("Cement Small Jobs", "Cement Small Jobs"),
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    slug = models.SlugField(max_length=20, unique=True, default='')
     email = models.EmailField(max_length=200, unique=True)
     first_name = models.CharField(max_length=50, editable=True)
     last_name = models.CharField(max_length=50, editable=True)
@@ -138,3 +140,12 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.service_address
+
+    def get_absolute_url(self):
+        return reverse('Profile', kwargs={'slug': self.slug})
+
+    def save(self, *args, **kwargs):
+        value = self.user_id
+        self.slug = slugify(value)
+        super().save(*args, **kwargs)
+

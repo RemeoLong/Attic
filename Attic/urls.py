@@ -11,5 +11,5 @@ urlpatterns = [
     path('EditSuccess', views.edit_success, name="EditSuccess"),
     path('success', views.success, name="Success"),
     path('profile', views.profile, name="Profile"),
-    path('edit_profile', ProfileUpdateView.as_view(), name="EditProfile"),
+    path('<slug:slug>', ProfileUpdateView.as_view(), name="EditProfile"),
 ]
