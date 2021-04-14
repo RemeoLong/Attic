@@ -6,8 +6,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-from .forms import ConsultForm, EditProfileForm, CreateProfileForm
-from .models import Consultation, Profile
+from .forms import ConsultForm
+from .models import Consultation
 
 
 def index(request):
@@ -20,10 +20,6 @@ def service(request):
 
 def success(request):
     return render(request, 'index/success.html', {})
-
-
-def edit_success(request):
-    return render(request, 'index/edit_success.html', {})
 
 
 def faq(request):
@@ -63,88 +59,6 @@ def consultation(request):
 
     form = ConsultForm()
     return render(request, "index/consult.html", {'form': form})
-
-
-@login_required
-def profile(request):
-    return render(request, 'index/profile.html', {})
-
-
-def create_profile(request):
-    if request.method == "POST":
-        form = CreateProfileForm(request.POST)
-        if form.is_valid():
-            try:
-                form.save()
-                return redirect('index/profile_success.html')
-            except:
-                pass
-        else:
-            form = CreateProfileForm()
-        return render(request, 'index.profile.html', {'form': form})
-
-
-@login_required
-def edit_profile(request):
-    if request.method == "POST":
-        form = EditProfileForm(request.POST, instance=profile)
-        if form.is_valid():
-            form.save()
-            return redirect('index/edit_success.html')
-        return render(request, 'index/edit_profile.html', {'profile': profile})
-
-    form = EditProfileForm()
-    return render(request, 'index/edit_profile.html', {'form': form})
-
-
-def show_all_profile(request):
-    profile = Profile.objects.all()
-    return render(request, 'index/profile_all.html', {'profile': profile})
-
-
-#def delete_profile(request, id):
-#    profile = Profile.objects.get(id=id)
-#    profile.delete()
-#    return redirect('index/delete_success.html')
-
-
-class ProfileListView(LoginRequiredMixin, ListView):
-    model = Profile
-
-    def get_queryset(self):
-        queryset = super().get_queryset()
-
-        q = self.request.GET.get("q")
-        if q:
-            return queryset.filter(title__icontains=q)
-
-        return queryset
-
-
-class ProfileDetailView(LoginRequiredMixin, DetailView):
-    model = Profile
-
-
-class ProfileCreateView(LoginRequiredMixin, CreateView):
-    model = Profile
-    fields = ['user', 'email', 'first_name', 'last_name', 'service_address', 'city', 'state', 'zip_code',
-              'phone_number', 'services', 'warranty_start_date']
-
-
-class ProfileUpdateView(LoginRequiredMixin, UpdateView):
-    model = Profile
-    fields = ['email', 'first_name', 'last_name', 'phone_number']
-
-    def post(self, request, *args, **kwargs):
-        form = EditProfileForm(request.POST)
-        if form.is_valid():
-            return self.form_valid(form)
-        else:
-            return self.form_invalid(form)
-
-
-class ProfileDeleteView(LoginRequiredMixin, DeleteView):
-    model = Profile
 
 
 class ConsultationListView(LoginRequiredMixin, ListView):

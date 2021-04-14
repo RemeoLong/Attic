@@ -1,6 +1,6 @@
 from django.views.generic import ListView
 
-from Attic.models import Profile
+from Profile.models import Profile
 
 
 class ProfileListView(ListView):

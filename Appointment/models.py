@@ -1,7 +1,8 @@
 from datetime import date
 
 from django.db import models
-from Attic.models import Profile, Consultation
+from Attic.models import Consultation
+from Profile.models import Profile
 
 
 class Appointment(models.Model):

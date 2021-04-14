@@ -8,8 +8,6 @@ urlpatterns = [
     path('Consultations', views.consultation, name="Consultations"),
     path('FAQ', views.faq, name="FAQ"),
     path('Reviews', views.reviews, name="Reviews"),
-    path('EditSuccess', views.edit_success, name="EditSuccess"),
     path('success', views.success, name="Success"),
-    path('profile', views.profile, name="Profile"),
-    path('<slug:slug>', ProfileUpdateView.as_view(), name="EditProfile"),
+
 ]
