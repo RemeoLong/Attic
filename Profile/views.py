@@ -1,13 +1,11 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.mail import send_mail, BadHeaderError
-from django.http import HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib import messages
+from django.contrib.auth.models import User
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-from .forms import CreateProfileForm, EditProfileForm
-from .models import Profile
+from .forms import CreateProfileForm, EditProfileForm, CreateFollowUpForm
+from .models import Profile, FollowUp
 
 
 @login_required
@@ -17,6 +15,10 @@ def profile(request):
 
 def edit_success(request):
     return render(request, 'index/edit_success.html', {})
+
+
+def profile_home(request):
+    return render(request, 'index/profile_home.html', {})
 
 
 class ProfileListView(LoginRequiredMixin, ListView):
@@ -50,12 +52,14 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     form_class = EditProfileForm
 
     def get_object(self, **kwargs):
-        id = self.kwargs.get('id')
-        return get_object_or_404(Profile, id=id)
+        return Profile.objects.get(user=self.request.user)
 
     def form_valid(self, form):
-        print(form.cleaned_data)
-        return get_object_or_404(Profile, id=id)
+        instance = form.instance
+        instance.user = self.request.user
+        instance.save()
+
+        return super(ProfileUpdateView, self).form_valid(form)
 
 
 class ProfileDeleteView(LoginRequiredMixin, DeleteView):
@@ -98,3 +102,24 @@ def show_all_profile(request):
 #    profile = Profile.objects.get(id=id)
 #    profile.delete()
 #    return redirect('index/delete_success.html')
+
+
+class FollowUpCreateView(LoginRequiredMixin, CreateView):
+    model = FollowUp
+    form_class = CreateFollowUpForm
+    template_name = 'index/appointment.html'
+
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        form.instance.id = User.objects.get(id=self.request.user)
+        return super(FollowUpCreateView, self).form_valid(form)
+
+#    def post(self, request, *args, **kwargs):
+#        form = CreateFollowUpForm(data=request.POST, instance=profile)
+#        if form.is_valid():
+#            return self.form_valid(form)
+#        else:
+#            return self.form_invalid(form)
+

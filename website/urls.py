@@ -23,4 +23,5 @@ urlpatterns = [
     path('', include('Attic.urls')),
     path('Appointment/', include('Appointment.urls')),
     path('Dashboard/', include('Dashboard.urls')),
+    path('Profile/', include('Profile.urls')),
 ]

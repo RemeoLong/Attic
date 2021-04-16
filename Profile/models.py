@@ -72,8 +72,25 @@ class Profile(models.Model):
         return self.service_address
 
     def get_absolute_url(self):
-        return reverse('Profile:profile-detail', kwargs={'id': self.id})
+        return reverse('Profile:Profile')
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.user)
         super(Profile, self).save(*args, **kwargs)
+
+
+class FollowUp(models.Model):
+    status_choices = (
+        ("Open", "Open"),
+        ("Working", "Working"),
+        ("Pending", "Pending"),
+        ("Complete", "Complete"),
+    )
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default='')
+    date = models.DateField(default='')
+    time = models.TimeField(default='')
+    comment = models.CharField(max_length=150, default='')
+    status = models.CharField(max_length=10, choices=status_choices, default="Open")
+
+    def __str__(self):
+        return self.date

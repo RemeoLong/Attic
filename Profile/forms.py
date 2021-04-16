@@ -1,5 +1,7 @@
 from django import forms
-from .models import Profile
+
+from Attic.forms import TimeInput, DateInput
+from .models import Profile, FollowUp
 
 
 class EditProfileForm(forms.ModelForm):
@@ -32,3 +34,14 @@ class CreateProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ('email', 'first_name', 'last_name', 'phone_number')
+
+
+class CreateFollowUpForm(forms.ModelForm):
+    date = forms.DateField(widget=DateInput)
+    time = forms.TimeField(widget=TimeInput)
+    comment = forms.CharField(label='Comments', max_length=500, required=False,
+                              widget=forms.Textarea)
+
+    class Meta:
+        model = FollowUp
+        fields = ('date', 'time', 'comment')

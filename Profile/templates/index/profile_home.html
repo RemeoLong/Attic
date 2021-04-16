@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base2.html' %}
 {% load static %}
 
 {% block style %}
@@ -16,7 +16,7 @@ button {
         <br>
         <h1>Scheduled Appointment</h1>
         <h2>{{ user.consultation.consult_date }} @ {{ user.consultation.consult_time }}</h2>
-        <h2>Email Address: {{ user.email }}</h2>
+        <h2>Email Address: {{ user.profile.email }}</h2>
         <h2>Name: {{ user.profile.first_name }} {{ user.profile.last_name }}</h2>
         <h2>Phone Number: {{ user.profile.phone_number }}</h2>
         <h2>Service Address:</h2>
@@ -26,7 +26,7 @@ button {
 <br>
         <p>To edit your Personal Information, Please click on the "Edit Profile" button below.</p>
         <button type="button">
-    <a href="{% url 'EditProfile' %}">Edit Profile</a>
+    <a href="{% url 'Profile:EditProfile' user.id %}">Edit Profile</a>
 </button>
         <br>
     </div>

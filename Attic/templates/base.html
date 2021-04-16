@@ -104,10 +104,10 @@ span.psw {
      <a class="nav-link"><p><b>User: {{ user.get_username }}</b></p></a>
     </li>
     <li class="nav-item active">
-      <a class="nav-link" href="{% url 'Profile' %}"><p><b>Profile</b></p></a>
+      <a class="nav-link" href="{% url 'Profile:Profile' %}"><p><b>Profile</b></p></a>
     </li>
     <li class="nav-item active">
-      <a class="nav-link" href="{}"><p><b>Book A Follow Up</b></p></a>
+      <a class="nav-link" href="{% url 'Profile:FollowUp' %}"><p><b>Book A Follow Up</b></p></a>
     </li>
     <li class="nav-item active">
       <a class="nav-link" href="{% url 'logout' %}"><p><b>Log Out</b></p></a>

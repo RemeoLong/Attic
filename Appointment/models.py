@@ -23,18 +23,4 @@ class Appointment(models.Model):
         return Appointment.objects.filter(post_date__date=date.today())
 
 
-class FollowUps(models.Model):
-    status_choices = (
-        ("Open", "Open"),
-        ("Working", "Working"),
-        ("Pending", "Pending"),
-        ("Complete", "Complete"),
-    )
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, default='')
-    date = models.DateField(default='')
-    time = models.TimeField(default='')
-    comment = models.CharField(max_length=150, default='')
-    status = models.CharField(max_length=10, choices=status_choices, default="Open")
 
-    def __str__(self):
-        return self.profile
