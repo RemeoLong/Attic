@@ -45,3 +45,15 @@ class CreateFollowUpForm(forms.ModelForm):
     class Meta:
         model = FollowUp
         fields = ('date', 'time', 'comment')
+
+
+class EditFollowUpsForm(forms.ModelForm):
+    date = forms.DateField(label='Date', required=True, widget=forms.DateInput(attrs={'class': "form-control"}))
+    time = forms.TimeField(label='Time', required=True, widget=forms.TimeInput())
+    comment = forms.CharField(label='Comments', max_length=500, required=False,
+                              widget=forms.Textarea)
+    status = forms.CharField()
+
+    class Meta:
+        model = FollowUp
+        fields = ('date', 'time', 'comment', 'status')

@@ -35,8 +35,8 @@ class Consultation(models.Model):
     zip_code = models.CharField(max_length=10, editable=True)
     phone_number = models.CharField(max_length=15, editable=True)
     service = models.CharField(max_length=100, choices=service_choices)
-    consult_date = models.CharField(max_length=20, default='')
-    consult_time = models.CharField(max_length=20, default='')
+    consult_date = models.DateField(default='')
+    consult_time = models.TimeField(default='')
     comment = models.TextField(default='')
     customer = models.BooleanField(default=False)
 
@@ -70,10 +70,10 @@ class Consultation(models.Model):
         return self.service_address
 
     def __str__(self):
-        return self.consult_date
+        return str(self.consult_date)
 
     def __str__(self):
-        return self.consult_time
+        return str(self.consult_time)
 
     #@receiver(post_save, sender=User)
     #def create_profile(sender, instance, **kwargs):

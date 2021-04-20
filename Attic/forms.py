@@ -1,6 +1,5 @@
 from django import forms
-from Appointment.models import *
-from .models import *
+from .models import Consultation
 
 
 class DateInput(forms.DateInput):

@@ -1,8 +1,9 @@
+from datetime import date
+
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.template.defaultfilters import slugify
 from django.urls import reverse
 
 
@@ -24,8 +25,7 @@ class Profile(models.Model):
         ("Cement Small Jobs", "Cement Small Jobs"),
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    slug = models.SlugField(max_length=10, unique=True, default='')
-    email = models.EmailField(max_length=200, unique=True)
+    email = models.EmailField(max_length=200)
     first_name = models.CharField(max_length=50, editable=True)
     last_name = models.CharField(max_length=50, editable=True)
     service_address = models.CharField(max_length=100)
@@ -35,8 +35,8 @@ class Profile(models.Model):
     phone_number = models.CharField(max_length=15, editable=True)
     services = models.CharField(max_length=50, default='', editable=True, choices=service_choices)
     additional_service = models.CharField(max_length=50, null=True, blank=True, editable=True, choices=service_choices)
-    warranty_start_date = models.DateField(null=True, blank=True, default='')
-    warranty_end_date = models.DateField(null=True, blank=True, default='')
+    warranty_start_date = models.DateField(null=True, blank=True)
+    warranty_end_date = models.DateField(null=True, blank=True)
     warranty = models.FileField(null=True, blank=True, default='')
     invoice = models.FileField(null=True, blank=True, default='')
 
@@ -74,10 +74,6 @@ class Profile(models.Model):
     def get_absolute_url(self):
         return reverse('Profile:Profile')
 
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.user)
-        super(Profile, self).save(*args, **kwargs)
-
 
 class FollowUp(models.Model):
     status_choices = (
@@ -89,8 +85,22 @@ class FollowUp(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, default='')
     date = models.DateField(default='')
     time = models.TimeField(default='')
-    comment = models.CharField(max_length=150, default='')
+    comment = models.CharField(max_length=150, default='', null=True)
     status = models.CharField(max_length=10, choices=status_choices, default="Open")
 
     def __str__(self):
-        return self.date
+        return str(self.date)
+
+    def __str__(self):
+        return str(self.time)
+
+    @property
+    def followup_filtering(self):
+        return FollowUp.objects.all().filter(FollowUp_id=self.id)
+
+    def todays_followups(self):
+        today = date.today()
+        return FollowUp.objects.filter(post_date__date=date.today())
+
+    def get_absolute_url(self):
+        return reverse('Profile:Profile')

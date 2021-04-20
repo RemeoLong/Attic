@@ -22,7 +22,6 @@ PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 
 INSTALLED_APPS = [
     'Attic.apps.AtticConfig',
-    'Appointment.apps.AppointmentConfig',
     'Dashboard.apps.DashboardConfig',
     'Profile.apps.ProfileConfig',
     'django.contrib.admin',

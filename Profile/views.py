@@ -35,16 +35,11 @@ class ProfileListView(LoginRequiredMixin, ListView):
 
 
 class ProfileDetailView(LoginRequiredMixin, DetailView):
-    model = Profile
+    model = User
+    template_name = 'index/profile_home.html'
 
-
-class ProfileCreateView(LoginRequiredMixin, CreateView):
-    form_class = CreateProfileForm
-    queryset = Profile.objects.all()
-
-    def form_valid(self, form):
-        print(form.cleaned_data)
-        return super().form_valid(form)
+    def get_object(self, **kwargs):
+        return Profile.objects.get(user=self.request.user)
 
 
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):
@@ -113,13 +108,8 @@ class FollowUpCreateView(LoginRequiredMixin, CreateView):
         return super().get(request, *args, **kwargs)
 
     def form_valid(self, form):
-        form.instance.id = User.objects.get(id=self.request.user)
+        instance = form.instance
+        instance.user = self.request.user
+        instance.save()
+
         return super(FollowUpCreateView, self).form_valid(form)
-
-#    def post(self, request, *args, **kwargs):
-#        form = CreateFollowUpForm(data=request.POST, instance=profile)
-#        if form.is_valid():
-#            return self.form_valid(form)
-#        else:
-#            return self.form_invalid(form)
-
