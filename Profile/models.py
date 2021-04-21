@@ -85,7 +85,7 @@ class FollowUp(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, default='')
     date = models.DateField(default='')
     time = models.TimeField(default='')
-    comment = models.CharField(max_length=150, default='', null=True)
+    comment = models.CharField(max_length=250, default='No Comments', null=True)
     status = models.CharField(max_length=10, choices=status_choices, default="Open")
 
     def __str__(self):
@@ -103,4 +103,4 @@ class FollowUp(models.Model):
         return FollowUp.objects.filter(post_date__date=date.today())
 
     def get_absolute_url(self):
-        return reverse('Profile:Profile')
+        return reverse('Profile:Appointment')

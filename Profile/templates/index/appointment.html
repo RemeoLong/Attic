@@ -1,29 +1,36 @@
-{% extends 'base2.html' %}
+{% extends 'base_profile.html' %}
 {% load static %}
+
+{% block style %}
+button {
+    width: 35%;
+    cursor: pointer;
+}
+
+{% endblock %}
+
 
 {% block body %}
 
 <div class="ex1">
     <div class="ex2">
+    <h1>Scheduled Follow-Up Appointment</h1>
+        <br>
 
-<h1>Book A Follow Up Appointment</h1>
-<form method="POST">
-        {% csrf_token %}
-        <large style="text-align: center;">{{ c_form.as_p }}</large>
-           {% for field in form %}
-      <p>
-        {{ field.label_tag }}<br>
-        {{ field }}
-        {% if field.help_text %}
-          <small style="color: white">{{ field.help_text }}</small>
-        {% endif %}
-        {% for error in field.errors %}
-          <p style="color: red">{{ error }}</p>
+    {% for followup in object_list %}
+        <br>
+        <h2>User: {{ followup.user.username }}</h2>
+        <h2>Date: {{ followup.date }} @ {{ followup.time }}</h2>
+        <h2>Comments: {{ followup.comment }}</h2>
+        <button type="button"> <a href="{% url 'Profile:EditFollowUp' %}">Edit Appointment</a> </button>
+        <button type="button"> <a href="{% url 'Profile:DeleteFollowUp' %}">Cancel Appointment</a> </button>
+        <br>
+
+
         {% endfor %}
-      </p>
-    {% endfor %}
-        <button type="submit">Submit</button>
-    </form>
+
+
+
 
 
     </div>

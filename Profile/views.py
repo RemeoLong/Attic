@@ -2,9 +2,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.utils import timezone
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic.detail import DetailView
 
-from .forms import CreateProfileForm, EditProfileForm, CreateFollowUpForm
+from .forms import CreateProfileForm, EditProfileForm, CreateFollowUpForm, EditFollowUpForm
 from .models import Profile, FollowUp
 
 
@@ -99,10 +101,36 @@ def show_all_profile(request):
 #    return redirect('index/delete_success.html')
 
 
+class FollowUpListView(LoginRequiredMixin, ListView):
+    model = FollowUp
+    template_name = 'index/appointment.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['now'] = timezone.now()
+        return context
+
+    def get_queryset(self, **kwargs):
+        return FollowUp.objects.filter(user=self.request.user)
+
+
+class FollowUpDetailView(LoginRequiredMixin, DetailView):
+    model = User
+    template_name = 'index/appointment.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['now'] = timezone.now()
+        return context
+
+    def get_object(self, **kwargs):
+        return FollowUp.objects.filter(user=self.request.user)
+
+
 class FollowUpCreateView(LoginRequiredMixin, CreateView):
     model = FollowUp
     form_class = CreateFollowUpForm
-    template_name = 'index/appointment.html'
+    template_name = 'index/book_appointment.html'
 
     def get(self, request, *args, **kwargs):
         return super().get(request, *args, **kwargs)
@@ -113,3 +141,31 @@ class FollowUpCreateView(LoginRequiredMixin, CreateView):
         instance.save()
 
         return super(FollowUpCreateView, self).form_valid(form)
+
+
+class FollowUpUpdateView(LoginRequiredMixin, UpdateView):
+    model = FollowUp
+    form_class = EditFollowUpForm
+    template_name = 'index/edit_appointment.html'
+
+    def get_object(self, **kwargs):
+        return Profile.objects.get(user=self.request.user)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['now'] = timezone.now()
+        return context
+
+    def form_valid(self, form):
+        instance = form.instance
+        instance.user = self.request.user
+        instance.save()
+
+        return super(FollowUpUpdateView, self).form_valid(form)
+
+
+class FollowUpDeleteView(LoginRequiredMixin, DeleteView):
+    model = FollowUp
+
+    def get_object(self, **kwargs):
+        return Profile.objects.get(user=self.request.user)

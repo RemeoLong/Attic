@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>{{ user.username }}Profile</title>
+  <title>{{ user.username }}'s Profile</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -74,10 +74,16 @@
      <a class="nav-link"><p><b>User: {{ user.get_username }}</b></p></a>
     </li>
     <li class="nav-item active">
+      <a class="nav-link" href="{}"><p><b>Additional Services</b></p></a>
+    </li>
+    <li class="nav-item active">
       <a class="nav-link" href="{% url 'Profile:Profile' %}"><p><b>Profile</b></p></a>
     </li>
     <li class="nav-item active">
-      <a class="nav-link" href="{% url 'Profile:FollowUp' %}"><p><b>Book A Follow Up</b></p></a>
+      <a class="nav-link" href="{% url 'Profile:Appointment' %}"><p><b>Appointments</b></p></a>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link" href="{% url 'Profile:CreateFollowUp' %}"><p><b>Book A Follow Up</b></p></a>
     </li>
     <li class="nav-item active">
       <a class="nav-link" href="{% url 'logout' %}"><p><b>Log Out</b></p></a>

@@ -1,13 +1,23 @@
 {% extends 'base_profile.html' %}
 {% load static %}
 
+{% block style %}
+button {
+    width: 35%;
+    cursor: pointer;
+}
+
+{% endblock %}
+
+
 {% block body %}
 
 <div class="ex1">
     <div class="ex2">
-
-<h1>Editing Profile</h1>
-<form method="POST">
+    <h1>Editing Current Appointment</h1>
+        <h2>Date: {{ followup.date }} // Time: {{ followup.time }}</h2>
+        <br>
+        <form method="POST">
         {% csrf_token %}
         <large style="text-align: center;">{{ c_form.as_p }}</large>
            {% for field in form %}
@@ -26,7 +36,7 @@
     </form>
 
 
-    </div>
-</div>
 
+        </div>
+    </div>
 {% endblock %}

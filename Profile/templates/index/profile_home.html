@@ -1,10 +1,12 @@
-{% extends 'base2.html' %}
+{% extends 'base_profile.html' %}
 {% load static %}
 
 {% block style %}
 button {
     width: 35%;
+    cursor: pointer;
 }
+
 {% endblock %}
 
 
@@ -14,17 +16,18 @@ button {
     <div class="ex2">
     <h1>Customer's Profile</h1>
         <br>
-        <h1>Scheduled Appointment</h1>
-        <h2>{{ user.followup.date }} @ {{ user.followup.time }}</h2>
+        <h2>Contact Information:</h2>
         <h2>Email Address: {{ user.profile.email }}</h2>
         <h2>Name: {{ user.profile.first_name }} {{ user.profile.last_name }}</h2>
         <h2>Phone Number: {{ user.profile.phone_number }}</h2>
+        <br>
         <h2>Service Address:</h2>
         <h2>{{ user.profile.service_address }}</h2>
         <h2>{{ user.profile.city }}, {{ user.profile.state }} {{ user.profile.zip_code }}</h2>
+        <br>
         <h2>Service: ({{ user.profile.services }})</h2>
 <br>
-        <p>To edit your Personal Information, Please click on the "Edit Profile" button below.</p>
+        <p>To edit your Contact Information, Please click on the "Edit Profile" button below.</p>
         <button type="button">
     <a href="{% url 'Profile:EditProfile' user.id %}">Edit Profile</a>
 </button>
