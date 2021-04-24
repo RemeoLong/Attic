@@ -3,7 +3,7 @@
 
 {% block style %}
 button {
-    width: 35%;
+    width: 30%;
     cursor: pointer;
 }
 
@@ -19,11 +19,10 @@ button {
 
     {% for followup in object_list %}
         <br>
-        <h2>User: {{ followup.user.username }}</h2>
         <h2>Date: {{ followup.date }} @ {{ followup.time }}</h2>
         <h2>Comments: {{ followup.comment }}</h2>
-        <button type="button"> <a href="{% url 'Profile:EditFollowUp' %}">Edit Appointment</a> </button>
-        <button type="button"> <a href="{% url 'Profile:DeleteFollowUp' %}">Cancel Appointment</a> </button>
+        <button type="button"> <a href="{% url 'Profile:EditFollowUp' followup.id %}">Edit Appointment</a> </button>
+        <button type="button"> <a href="{% url 'Profile:DeleteFollowUp' followup.id %}">Cancel Appointment</a> </button>
         <br>
 
 

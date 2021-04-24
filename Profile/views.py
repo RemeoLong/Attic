@@ -62,6 +62,9 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
 class ProfileDeleteView(LoginRequiredMixin, DeleteView):
     model = Profile
 
+    def get_object(self, **kwargs):
+        return Profile.objects.get(user=self.request.user)
+
 
 def create_profile(request):
     if request.method == "POST":

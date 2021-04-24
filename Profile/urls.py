@@ -10,8 +10,8 @@ urlpatterns = [
 
     path('Appointment', FollowUpListView.as_view(), name="Appointment"),
     path('FollowUp', FollowUpCreateView.as_view(), name="CreateFollowUp"),
-    path('EditFollowUp', FollowUpUpdateView.as_view(), name="EditFollowUp"),
-    path('DeleteFollowUp', FollowUpDeleteView.as_view(), name="DeleteFollowUp"),
+    path('EditFollowUp/<int:pk>', FollowUpUpdateView.as_view(), name="EditFollowUp"),
+    path('DeleteFollowUp/<int:pk>', FollowUpDeleteView.as_view(), name="DeleteFollowUp"),
 
     path('EditSuccess/', views.edit_success, name="EditSuccess"),
 ]
