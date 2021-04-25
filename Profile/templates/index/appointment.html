@@ -14,10 +14,10 @@ button {
 
 <div class="ex1">
     <div class="ex2">
-    <h1>Scheduled Follow-Up Appointment</h1>
-        <br>
+    <h1>Follow-Up Appointments:</h1>
 
     {% for followup in object_list %}
+        {% if followup.status == "Open" %}
         <br>
         <h2>Date: {{ followup.date }} @ {{ followup.time }}</h2>
         <h2>Comments: {{ followup.comment }}</h2>
@@ -25,11 +25,21 @@ button {
         <button type="button"> <a href="{% url 'Profile:DeleteFollowUp' followup.id %}">Cancel Appointment</a> </button>
         <br>
 
-
+        {% else %}
+        {% endif %}
         {% endfor %}
 
+    <script>
+function myFunction() {
+  var txt;
+  if (confirm("Cancel the Follow Up Appointment?")) {
+   //go to your delete path
+  } else {
+  //don't do anything
+  }
 
-
+}
+</script>
 
 
     </div>

@@ -1,7 +1,9 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
+from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.utils import timezone
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
@@ -44,9 +46,10 @@ class ProfileDetailView(LoginRequiredMixin, DetailView):
         return Profile.objects.get(user=self.request.user)
 
 
-class ProfileUpdateView(LoginRequiredMixin, UpdateView):
+class ProfileUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     template_name = 'index/edit_profile.html'
     form_class = EditProfileForm
+    success_message = 'Profile has been successfully Updated'
 
     def get_object(self, **kwargs):
         return Profile.objects.get(user=self.request.user)
@@ -61,6 +64,7 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
 
 class ProfileDeleteView(LoginRequiredMixin, DeleteView):
     model = Profile
+    success_message = 'Profile has been successfully Deleted.'
 
     def get_object(self, **kwargs):
         return Profile.objects.get(user=self.request.user)
@@ -130,10 +134,11 @@ class FollowUpDetailView(LoginRequiredMixin, DetailView):
         return FollowUp.objects.filter(user=self.request.user)
 
 
-class FollowUpCreateView(LoginRequiredMixin, CreateView):
+class FollowUpCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = FollowUp
     form_class = CreateFollowUpForm
     template_name = 'index/book_appointment.html'
+    success_message = 'Your Appointment has been Booked.'
 
     def get(self, request, *args, **kwargs):
         return super().get(request, *args, **kwargs)
@@ -146,13 +151,11 @@ class FollowUpCreateView(LoginRequiredMixin, CreateView):
         return super(FollowUpCreateView, self).form_valid(form)
 
 
-class FollowUpUpdateView(LoginRequiredMixin, UpdateView):
+class FollowUpUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = FollowUp
     form_class = EditFollowUpForm
     template_name = 'index/edit_appointment.html'
-
-    def get_object(self, **kwargs):
-        return Profile.objects.get(user=self.request.user)
+    success_message = 'Your Appointment has been Updated.'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -167,8 +170,15 @@ class FollowUpUpdateView(LoginRequiredMixin, UpdateView):
         return super(FollowUpUpdateView, self).form_valid(form)
 
 
-class FollowUpDeleteView(LoginRequiredMixin, DeleteView):
+class FollowUpDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = FollowUp
+    template_name = 'index/appt_confirm_delete.html'
+    success_message = 'Your Appointment has been Deleted.'
+    success_url = reverse_lazy('Profile:Appointment')
 
-    def get_object(self, **kwargs):
-        return Profile.objects.get(user=self.request.user)
+    def form_valid(self, form):
+        instance = form.instance
+        instance.user = self.request.user
+        instance.save()
+
+        return super(FollowUpDeleteView, self).form_valid(form)

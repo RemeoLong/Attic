@@ -1,0 +1,26 @@
+{% extends 'base_profile.html' %}
+{% load static %}
+
+{% block style %}
+button {
+    width: 30%;
+    cursor: pointer;
+}
+
+{% endblock %}
+
+
+{% block body %}
+<div class="ex1">
+    <div class="ex2">
+        <h1>Confirming Cancellation Request:</h1>
+
+<form action="" method="post">{% csrf_token %} <br>
+    <h2>Are you sure you want to delete the Follow Up Appointment on</h2>
+    <h2>"{{ followup.date }} @ {{ followup.time }}"?</h2>
+    <input type="submit" value="Confirm" />
+</form>
+    </div>
+</div>
+
+{% endblock %}
