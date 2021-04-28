@@ -12,13 +12,8 @@ from .forms import CreateProfileForm, EditProfileForm, CreateFollowUpForm, EditF
 from .models import Profile, FollowUp
 
 
-@login_required
-def profile(request):
-    return render(request, 'index/profile.html', {})
-
-
-def edit_success(request):
-    return render(request, 'index/edit_success.html', {})
+def add_services(request):
+    return render(request, 'index/add_service.html', {})
 
 
 def profile_home(request):

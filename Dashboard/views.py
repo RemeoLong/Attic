@@ -7,7 +7,7 @@ from Profile.views import ProfileListView, FollowUpListView, ProfileDetailView, 
 
 
 def dash(request):
-    return render(request, 'index/dashboard.html', {})
+    return render(request, 'index/index.html', {})
 
 
 class ProfileList(ProfileListView):

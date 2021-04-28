@@ -74,7 +74,7 @@
      <a class="nav-link"><p><b>User: {{ user.get_username }}</b></p></a>
     </li>
     <li class="nav-item active">
-      <a class="nav-link" href="{}"><p><b>Additional Services</b></p></a>
+      <a class="nav-link" href="{% url 'Profile:AddService' %}"><p><b>Additional Services</b></p></a>
     </li>
     <li class="nav-item active">
       <a class="nav-link" href="{% url 'Profile:Profile' %}"><p><b>Profile</b></p></a>
