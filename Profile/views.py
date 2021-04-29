@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.messages.views import SuccessMessageMixin
@@ -65,44 +66,6 @@ class ProfileDeleteView(LoginRequiredMixin, DeleteView):
         return Profile.objects.get(user=self.request.user)
 
 
-def create_profile(request):
-    if request.method == "POST":
-        form = CreateProfileForm(request.POST)
-        if form.is_valid():
-            try:
-                form.save()
-                return redirect('index/profile_success.html')
-            except:
-                pass
-        else:
-            form = CreateProfileForm()
-        return render(request, 'index.profile.html', {'form': form})
-
-
-@login_required
-def edit_profile(request):
-    if request.method == "POST":
-        form = EditProfileForm(request.POST, instance=profile)
-        if form.is_valid():
-            form.save()
-            return redirect('index/edit_success.html')
-        return render(request, 'index/edit_profile.html', {'profile': profile})
-
-    form = EditProfileForm()
-    return render(request, 'index/edit_profile.html', {'form': form})
-
-
-def show_all_profile(request):
-    profile = Profile.objects.all()
-    return render(request, 'index/profile_all.html', {'profile': profile})
-
-
-#def delete_profile(request, id):
-#    profile = Profile.objects.get(id=id)
-#    profile.delete()
-#    return redirect('index/delete_success.html')
-
-
 class FollowUpListView(LoginRequiredMixin, ListView):
     model = FollowUp
     template_name = 'index/appointment.html'
@@ -110,6 +73,7 @@ class FollowUpListView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['now'] = timezone.now()
+#        context['total_open_followup'] = self.queryset.filter(Status='Open').count()
         return context
 
     def get_queryset(self, **kwargs):

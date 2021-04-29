@@ -2,12 +2,42 @@ from django.shortcuts import render
 from django.views.generic import ListView
 
 from Profile.models import Profile, FollowUp
+from Attic.views import ConsultationListView, ConsultationDetailView, ConsultationCreateView, ConsultationUpdateView, \
+    ConsultationDeleteView
 from Profile.views import ProfileListView, FollowUpListView, ProfileDetailView, FollowUpDetailView, ProfileUpdateView, \
-    ProfileDeleteView, FollowUpUpdateView, FollowUpDeleteView
+    ProfileDeleteView, FollowUpUpdateView, FollowUpDeleteView, FollowUpCreateView
 
 
 def dash(request):
-    return render(request, 'index/index.html', {})
+    return render(request, 'index/dashboard.html', {})
+
+
+def base(request):
+    return render(request, 'index/base_dashboard.html', {})
+
+
+class ConsultationList(ConsultationListView):
+    template_name = 'index/consult_list.html'
+
+
+class ConsultationApptList(ConsultationList):
+    template_name = 'index/consult_appt_list.html'
+
+
+class ConsultationDetail(ConsultationDetailView):
+    template_name = 'index/consult_detail.html'
+
+
+class ConsultationCreate(ConsultationCreateView):
+    template_name = 'index/consult_add.html'
+
+
+class ConsultationUpdate(ConsultationUpdateView):
+    template_name = 'index/consult_update.html'
+
+
+class ConsultationDelete(ConsultationDeleteView):
+    template_name = 'index/consult_delete.html'
 
 
 class ProfileList(ProfileListView):
@@ -39,6 +69,10 @@ class FollowUpList(FollowUpListView):
 
 class FollowUpDetail(FollowUpDetailView):
     template_name = 'index/appt_detail.html'
+
+
+class FollowUpCreate(FollowUpCreateView):
+    template_name = 'index/appt_add.html'
 
 
 class FollowUpUpdate(FollowUpUpdateView):

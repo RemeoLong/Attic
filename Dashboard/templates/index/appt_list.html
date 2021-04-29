@@ -1,13 +1,47 @@
 {% extends 'base_dashboard.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% block title %}<title>Appointments List</title> {% endblock %}
 
-</body>
-</html>
+{% block list %}
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table mr-1"></i>
+                                Follow Up Appointments
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Address</th>
+                                                <th>City</th>
+                                                <th>Zip Code</th>
+                                                <th>Service</th>
+                                                <th>Appointment Date</th>
+                                                <th>Appointment Time</th>
+                                                <th>Comments</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <tr>
+                                                <td>{{ user.profile.first_name }} {{ user.profile.last_name }}</td>
+                                                <td>{{ user.profile.service_address }}</td>
+                                                <td>{{ user.profile.city }}</td>
+                                                <td>{{ user.profile.zip_code }}</td>
+                                                <td>{{ user.profile.services }}</td>
+                                                <td>{{ user.followup.date }}</td>
+                                                <td>{{ user.followup.time }}</td>
+                                                <td>{{ user.followup.comment }}</td>
+                                                <td>{{ user.followup.status }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+{% endblock %}

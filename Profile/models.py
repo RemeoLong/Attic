@@ -53,6 +53,10 @@ class Profile(models.Model):
     def profile_filtering(self):
         return Profile.objects.all().filter(Profile_id=self.id)
 
+    @property
+    def total(self):
+        return Profile.objects.count()
+
     class Meta:
         ordering = ('email', 'first_name', 'last_name', 'phone_number', 'service_address', 'warranty_end_date')
 
@@ -97,6 +101,10 @@ class FollowUp(models.Model):
     @property
     def followup_filtering(self):
         return FollowUp.objects.all().filter(FollowUp_id=self.id)
+
+    @property
+    def total(self):
+        return FollowUp.objects.count()
 
     def todays_followups(self):
         today = date.today()

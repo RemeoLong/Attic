@@ -10,6 +10,12 @@ from django.urls import reverse
 
 
 class Consultation(models.Model):
+    status_choices = (
+        ("New", "New"),
+        ("Working", "Working"),
+        ("Pending Customer", "Pending Customer"),
+        ("Customer", "Customer")
+    )
     service_choices = (
         ("Pest: Mice", "Pest: Mice"),
         ("Pest: Rats", "Pest: Rats"),
@@ -37,8 +43,8 @@ class Consultation(models.Model):
     service = models.CharField(max_length=100, choices=service_choices)
     consult_date = models.DateField(default='')
     consult_time = models.TimeField(default='')
-    comment = models.TextField(default='')
-    customer = models.BooleanField(default=False)
+    comment = models.TextField(default='No Comments')
+    status = models.CharField(max_length=10, choices=status_choices, default="New")
 
     def __str__(self):
         return self.Consultation
@@ -46,6 +52,10 @@ class Consultation(models.Model):
     @property
     def consult_filtering(self):
         return Consultation.objects.all().filter(Consltation_id=self.id)
+
+    @property
+    def total(self):
+        return Consultation.objects.count()
 
     @property
     def today_consult(self):

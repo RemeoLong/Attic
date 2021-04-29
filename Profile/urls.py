@@ -11,4 +11,5 @@ urlpatterns = [
     path('EditFollowUp/<int:pk>', FollowUpUpdateView.as_view(), name="EditFollowUp"),
     path('DeleteFollowUp/<int:pk>', FollowUpDeleteView.as_view(), name="DeleteFollowUp"),
     path('FollowUp', FollowUpCreateView.as_view(), name="CreateFollowUp"),
+
 ]

@@ -1,40 +1,42 @@
 {% extends 'base_dashboard.html' %}
 {% load static %}
 
-{% block title %}<title>Profile List</title> {% endblock %}
+{% block title %}<title>Consultation Appointments</title> {% endblock %}
 
 {% block list %}
                         <div class="card mb-4">
                             <div class="card-header">
-                                <i class="fas fa-user-alt"></i>
-                                Customer List
+                                <i class="fas fa-calendar-alt"></i>
+                                Consultation List
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
+                                                <th>Status</th>
+                                                <th>Appointment Date</th>
+                                                <th>Appointment Time</th>
                                                 <th>Name</th>
                                                 <th>Address</th>
                                                 <th>City</th>
                                                 <th>Zip Code</th>
                                                 <th>Service</th>
-                                                <th>Warranty Start Date</th>
-                                                <th>Warranty End Date</th>
-                                                <th>Invoice</th>
+                                                <th>Comments</th>
                                             </tr>
                                         </thead>
 
                                         <tbody>
                                             <tr>
-                                                <td>{{ user.profile.first_name }} {{ user.profile.last_name }}</td>
-                                                <td>{{ user.profile.service_address }}</td>
-                                                <td>{{ user.profile.city }}</td>
-                                                <td>{{ user.profile.zip_code }}</td>
-                                                <td>{{ user.profile.services }}</td>
-                                                <td>{{ user.profile.warranty_start_date }}</td>
-                                                <td>{{ user.profile.warranty_end_date }}</td>
-                                                <td>{{ user.profile.invoice }}</td>
+                                                <td>{{ consultation.status }}</td>
+                                                <td>{{ consultation.date }}</td>
+                                                <td>{{ consultation.time }}</td>
+                                                <td>{{ consultation.first_name }} {{ consultation.last_name }}</td>
+                                                <td>{{ consultation.service_address }}</td>
+                                                <td>{{ consultation.city }}</td>
+                                                <td>{{ consultation.zip_code }}</td>
+                                                <td>{{ consultation.service }}</td>
+                                                <td>{{ consultation.comment }}</td>
                                             </tr>
                                         </tbody>
                                     </table>
