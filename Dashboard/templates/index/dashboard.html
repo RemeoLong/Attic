@@ -26,7 +26,8 @@
 
 
 {% block list %}
-                        <div class="card mb-4">
+
+<div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table mr-1"></i>
                                 Today's Appointment
@@ -36,6 +37,7 @@
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
+                                                <th>Status</th>
                                                 <th>Name</th>
                                                 <th>Address</th>
                                                 <th>City</th>
@@ -48,13 +50,14 @@
 
                                         <tbody>
                                             <tr>
-                                                <td>RemeoLong</td>
-                                                <td>8402 Tararin Lane</td>
-                                                <td>Richmond</td>
-                                                <td>77407</td>
-                                                <td>Pest: Mouse</td>
-                                                <td>5/24/2021</td>
-                                                <td>3:48 am</td>
+                                                <td>{{ consultation.status }}</td>
+                                                <td>{{ consultation.first_name }} {{ consultation.last_name }}</td>
+                                                <td>{{ consultation.service_address }}</td>
+                                                <td>{{ consultation.city }}</td>
+                                                <td>{{ consultation.zip_code }}</td>
+                                                <td>{{ consultation.services }}</td>
+                                                <td>{{ consultation.date }}</td>
+                                                <td>{{ consultation.time }}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -62,4 +65,5 @@
                                 </div>
                             </div>
                         </div>
+
 {% endblock %}
