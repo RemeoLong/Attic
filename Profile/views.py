@@ -23,6 +23,7 @@ def profile_home(request):
 
 class ProfileListView(LoginRequiredMixin, ListView):
     model = Profile
+    queryset = Profile.objects.all()
 
     def get_queryset(self):
         queryset = super().get_queryset()

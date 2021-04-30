@@ -17,8 +17,9 @@ button {
     <h1>Follow-Up Appointments:</h1>
 
     {% for followup in object_list %}
-        {% if followup.status == "Open" %}
+        {% if followup.status == "Open" or "Pending" %}
         <br>
+        <h2>Status: {{ followup.status }}</h2>
         <h2>Date: {{ followup.date }} @ {{ followup.time }}</h2>
         <h2>Comments: {{ followup.comment }}</h2>
         <button type="button"> <a href="{% url 'Profile:EditFollowUp' followup.id %}">Edit Appointment</a> </button>

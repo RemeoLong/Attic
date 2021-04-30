@@ -80,6 +80,7 @@ def consultation(request):
 
 class ConsultationListView(LoginRequiredMixin, ListView):
     model = Consultation
+    queryset = Consultation.objects.all()
 
 
 class ConsultationDetailView(LoginRequiredMixin, DetailView):

@@ -23,21 +23,27 @@
                                                 <th>Warranty Start Date</th>
                                                 <th>Warranty End Date</th>
                                                 <th>Invoice</th>
+                                                <th>Edit</th>
+                                                <th>Delete</th>
                                             </tr>
                                         </thead>
 
                                         <tbody>
+                                        {% for profile in object_list %}
                                             <tr>
-                                                <td>{{ user.profile.first_name }} {{ user.profile.last_name }}</td>
-                                                <td>{{ user.profile.service_address }}</td>
-                                                <td>{{ user.profile.city }}</td>
-                                                <td>{{ user.profile.zip_code }}</td>
-                                                <td>{{ user.profile.services }}</td>
-                                                <td>{{ user.profile.additional_service }}</td>
-                                                <td>{{ user.profile.warranty_start_date }}</td>
-                                                <td>{{ user.profile.warranty_end_date }}</td>
-                                                <td>{{ user.profile.invoice }}</td>
+                                                <td>{{ profile.first_name }} {{ profile.last_name }}</td>
+                                                <td>{{ profile.service_address }}</td>
+                                                <td>{{ profile.city }}</td>
+                                                <td>{{ profile.zip_code }}</td>
+                                                <td>{{ profile.services }}</td>
+                                                <td>{{ profile.additional_service }}</td>
+                                                <td>{{ profile.warranty_start_date }}</td>
+                                                <td>{{ profile.warranty_end_date }}</td>
+                                                <td>{{ profile.invoice }}</td>
+                                                <td><button>Edit</button></td>
+                                                <td><button>Delete</button></td>
                                             </tr>
+                                        {% endfor %}
                                         </tbody>
                                     </table>
 

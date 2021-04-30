@@ -23,21 +23,27 @@
                                                 <th>Appointment Time</th>
                                                 <th>Comments</th>
                                                 <th>Status</th>
+                                                <th>Edit</th>
+                                                <th>Delete</th>
                                             </tr>
                                         </thead>
 
                                         <tbody>
+                                        {% for followup in object_list %}
                                             <tr>
-                                                <td>{{ user.profile.first_name }} {{ user.profile.last_name }}</td>
-                                                <td>{{ user.profile.service_address }}</td>
-                                                <td>{{ user.profile.city }}</td>
-                                                <td>{{ user.profile.zip_code }}</td>
-                                                <td>{{ user.profile.services }}</td>
-                                                <td>{{ user.followup.date }}</td>
-                                                <td>{{ user.followup.time }}</td>
-                                                <td>{{ user.followup.comment }}</td>
-                                                <td>{{ user.followup.status }}</td>
+                                                <td>{{ followup.user.profile.first_name }} {{ followup.user.profile.last_name }}</td>
+                                                <td>{{ followup.user.profile.service_address }}</td>
+                                                <td>{{ followup.user.profile.city }}</td>
+                                                <td>{{ followup.user.profile.zip_code }}</td>
+                                                <td>{{ followup.user.profile.services }}</td>
+                                                <td>{{ followup.date }}</td>
+                                                <td>{{ followup.time }}</td>
+                                                <td>{{ followup.comment }}</td>
+                                                <td>{{ followup.status }}</td>
+                                                <td><button>Edit</button></td>
+                                                <td><button>Delete</button></td>
                                             </tr>
+                                        {% endfor %}
                                         </tbody>
                                     </table>
 

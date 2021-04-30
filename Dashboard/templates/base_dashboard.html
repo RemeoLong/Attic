@@ -75,7 +75,7 @@
                                             <a class="nav-link" href="401.html">Open</a>
                                             <a class="nav-link" href="404.html">Working</a>
                                             <a class="nav-link" href="500.html">Pending</a>
-                                            <a class="nav-link" href="500.html">Closed</a>
+                                            <a class="nav-link" href="500.html">Complete</a>
                                         </nav>
                                     </div>
                                     <a class="nav-link collapsed" href="{% url 'Dashboard:FollowUpList' %}" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
@@ -87,7 +87,7 @@
                                             <a class="nav-link" href="401.html">Open</a>
                                             <a class="nav-link" href="404.html">Working</a>
                                             <a class="nav-link" href="500.html">Pending</a>
-                                            <a class="nav-link" href="500.html">Closed</a>
+                                            <a class="nav-link" href="500.html">Complete</a>
                                         </nav>
                                     </div>
                                 </nav>
@@ -97,12 +97,8 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Charts
                             </a>
-                            <a class="nav-link" href="tables.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Tables
-                            </a>
-                        </div>
-                    </div>
+                                </div>
+                            </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as: {{ user.username }}</div>
                     </div>
@@ -115,9 +111,11 @@
                         <div class="row">
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">Total Consultations</div>
+                                    <div class="card-body">Consultations</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="{% url 'Dashboard:ConsultList' %}">Count: {{ consultations_list.count }}</a>
+                                        <a class="small text-white stretched-link">Total: {{ consultation.count }}</a>
+                                        <a class="small text-white stretched-link">Pending: {{ consultation.count }}</a>
+                                        <a class="small text-white stretched-link" href="{% url 'Dashboard:ConsultList' %}">Working: {{ consultation.count }}</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
@@ -126,16 +124,17 @@
                                 <div class="card bg-warning text-white mb-4">
                                     <div class="card-body">Consultations Appointments</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="{% url 'Dashboard:ConsultApptList' %}">Count: {{ profile.count }}</a>
+                                        <a class="small text-white stretched-link">Total: {{ profile.count }}</a>
+                                        <a class="small text-white stretched-link" href="{% url 'Dashboard:ConsultApptList' %}">Open: {{ profile.count }}</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">Total Customers</div>
+                                    <div class="card-body">Customers</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="{% url 'Dashboard:ProfileList' %}">Count: {{ consultations.email.count }}</a>
+                                        <a class="small text-white stretched-link" href="{% url 'Dashboard:ProfileList' %}">Total: {{ profile.count }}</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
@@ -144,7 +143,10 @@
                                 <div class="card bg-danger text-white mb-4">
                                     <div class="card-body">Follow Up Appointments</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="{% url 'Dashboard:FollowUpList' %}">Count: {{ total_open_followup }}</a>
+                                        <a class="small text-white stretched-link">Open: {{ total_open_followup }}</a>
+                                        <a class="small text-white stretched-link">Working: {{ consultation.count }}</a>
+                                        <a class="small text-white stretched-link">Pending: {{ consultation.status.count }}</a>
+                                        <a class="small text-white stretched-link" href="{% url 'Dashboard:FollowUpList' %}">Complete: {{ consultation.count }}</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>

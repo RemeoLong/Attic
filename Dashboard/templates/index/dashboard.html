@@ -49,6 +49,7 @@
                                         </thead>
 
                                         <tbody>
+                                        {% for consult in object_list %}
                                             <tr>
                                                 <td>{{ consultation.status }}</td>
                                                 <td>{{ consultation.first_name }} {{ consultation.last_name }}</td>
@@ -59,6 +60,7 @@
                                                 <td>{{ consultation.date }}</td>
                                                 <td>{{ consultation.time }}</td>
                                             </tr>
+                                        {% endfor %}
                                         </tbody>
                                     </table>
 

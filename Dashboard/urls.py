@@ -22,7 +22,6 @@ urlpatterns = [
     path('appt_detail/<int:id>/', login_required(FollowUpDetail.as_view()), name="FollowUpDetails"),
     path('appt_edit/<int:id>/', login_required(FollowUpUpdate.as_view()), name="FollowUpEdit"),
     path('appt_delete/<int:id>/', login_required(FollowUpDelete.as_view()), name="FollowUpDelete"),
-    path('base', views.base, name='base'),
 
 ]
 

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView
 
+from Attic.models import Consultation
 from Profile.models import Profile, FollowUp
 from Attic.views import ConsultationListView, ConsultationDetailView, ConsultationCreateView, ConsultationUpdateView, \
     ConsultationDeleteView
@@ -12,16 +13,18 @@ def dash(request):
     return render(request, 'index/dashboard.html', {})
 
 
-def base(request):
-    return render(request, 'index/base_dashboard.html', {})
-
-
 class ConsultationList(ConsultationListView):
     template_name = 'index/consult_list.html'
+
+    def get_queryset(self, **kwargs):
+        return Consultation.objects.all()
 
 
 class ConsultationApptList(ConsultationList):
     template_name = 'index/consult_appt_list.html'
+
+    def get_queryset(self, **kwargs):
+        return Consultation.objects.all()
 
 
 class ConsultationDetail(ConsultationDetailView):
@@ -47,6 +50,9 @@ class ProfileList(ProfileListView):
         context = super().get_context_data(**kwargs)
         return context
 
+    def get_queryset(self, **kwargs):
+        return Profile.objects.all()
+
 
 class ProfileDetail(ProfileDetailView):
     template_name = 'index/profile_detail.html'
@@ -63,8 +69,8 @@ class ProfileDelete(ProfileDeleteView):
 class FollowUpList(FollowUpListView):
     template_name = 'index/appt_list.html'
 
-    def get_object(self, **kwargs):
-        return FollowUp.objects.get.all(user=self.request.user)
+    def get_queryset(self, **kwargs):
+        return FollowUp.objects.all()
 
 
 class FollowUpDetail(FollowUpDetailView):

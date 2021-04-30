@@ -44,7 +44,7 @@ class Consultation(models.Model):
     consult_date = models.DateField(default='')
     consult_time = models.TimeField(default='')
     comment = models.TextField(default='No Comments')
-    status = models.CharField(max_length=10, choices=status_choices, default="New")
+    status = models.CharField(max_length=20, choices=status_choices, default="New")
 
     def __str__(self):
         return self.Consultation
