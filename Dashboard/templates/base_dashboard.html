@@ -72,10 +72,10 @@
                                     </a>
                                     <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
                                         <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="401.html">Open</a>
-                                            <a class="nav-link" href="404.html">Working</a>
-                                            <a class="nav-link" href="500.html">Pending</a>
-                                            <a class="nav-link" href="500.html">Complete</a>
+                                            <a class="nav-link" href="{% url 'Dashboard:ConsultNewList' %}">New</a>
+                                            <a class="nav-link" href="{% url 'Dashboard:ConsultWorkingList' %}">Working</a>
+                                            <a class="nav-link" href="{% url 'Dashboard:ConsultPendingList' %}">Pending</a>
+                                            <a class="nav-link" href="{% url 'Dashboard:ConsultCustomerList' %}">Convert to Customer</a>
                                         </nav>
                                     </div>
                                     <a class="nav-link collapsed" href="{% url 'Dashboard:FollowUpList' %}" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
@@ -84,10 +84,10 @@
                                     </a>
                                     <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
                                         <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="401.html">Open</a>
-                                            <a class="nav-link" href="404.html">Working</a>
-                                            <a class="nav-link" href="500.html">Pending</a>
-                                            <a class="nav-link" href="500.html">Complete</a>
+                                            <a class="nav-link" href="{% url 'Dashboard:FollowUpOpenList' %}">Open</a>
+                                            <a class="nav-link" href="{% url 'Dashboard:FollowUpWorkingList' %}">Working</a>
+                                            <a class="nav-link" href="{% url 'Dashboard:FollowUpPendingList' %}">Pending</a>
+                                            <a class="nav-link" href="{% url 'Dashboard:FollowUpCompleteList' %}">Complete</a>
                                         </nav>
                                     </div>
                                 </nav>

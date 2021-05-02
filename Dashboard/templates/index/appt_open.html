@@ -1,0 +1,55 @@
+{% extends 'base_dashboard.html' %}
+{% load static %}
+
+{% block title %}<title>Appointments List</title> {% endblock %}
+
+{% block list %}
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table mr-1"></i>
+                                Open Follow Up Appointments
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Address</th>
+                                                <th>City</th>
+                                                <th>Zip Code</th>
+                                                <th>Service</th>
+                                                <th>Appointment Date</th>
+                                                <th>Appointment Time</th>
+                                                <th>Comments</th>
+                                                <th>Status</th>
+                                                <th>Edit</th>
+                                                <th>Delete</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        {% for followup in object_list %}
+                                            {% if followup.status == "Open" %}
+                                            <tr>
+                                                <td>{{ followup.user.profile.first_name }} {{ followup.user.profile.last_name }}</td>
+                                                <td>{{ followup.user.profile.service_address }}</td>
+                                                <td>{{ followup.user.profile.city }}</td>
+                                                <td>{{ followup.user.profile.zip_code }}</td>
+                                                <td>{{ followup.user.profile.services }}</td>
+                                                <td>{{ followup.date }}</td>
+                                                <td>{{ followup.time }}</td>
+                                                <td>{{ followup.comment }}</td>
+                                                <td>{{ followup.status }}</td>
+                                                <td><button>Edit</button></td>
+                                                <td><button>Delete</button></td>
+                                            </tr>
+                                            {% endif %}
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+{% endblock %}

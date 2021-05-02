@@ -25,23 +25,8 @@ button {
         <button type="button"> <a href="{% url 'Profile:EditFollowUp' followup.id %}">Edit Appointment</a> </button>
         <button type="button"> <a href="{% url 'Profile:DeleteFollowUp' followup.id %}">Cancel Appointment</a> </button>
         <br>
-
-        {% else %}
         {% endif %}
-        {% endfor %}
-
-    <script>
-function myFunction() {
-  var txt;
-  if (confirm("Cancel the Follow Up Appointment?")) {
-   //go to your delete path
-  } else {
-  //don't do anything
-  }
-
-}
-</script>
-
+    {% endfor %}
 
     </div>
 </div>

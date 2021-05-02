@@ -1,0 +1,59 @@
+{% extends 'base_dashboard.html' %}
+{% load static %}
+
+{% block title %}<title>Pending Customer</title> {% endblock %}
+
+{% block list %}
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table mr-1"></i>
+                                Pending Customers
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Status</th>
+                                                <th>Name</th>
+                                                <th>Address</th>
+                                                <th>City</th>
+                                                <th>Zip Code</th>
+                                                <th>Service</th>
+                                                <th>Email</th>
+                                                <th>Contact Number</th>
+                                                <th>Appointment Date</th>
+                                                <th>Appointment Time</th>
+                                                <th>Comments</th>
+                                                <th>Edit</th>
+                                                <th>Delete</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        {% for consultation in object_list %}
+                                            {% if consultation.status == "Pending Customer" %}
+                                            <tr>
+                                                <td>{{ consultation.status }}</td>
+                                                <td>{{ consultation.first_name }} {{ consultation.last_name }}</td>
+                                                <td>{{ consultation.service_address }}</td>
+                                                <td>{{ consultation.city }}</td>
+                                                <td>{{ consultation.zip_code }}</td>
+                                                <td>{{ consultation.service }}</td>
+                                                <td>{{ consultation.email }}</td>
+                                                <td>{{ consultation.phone_number }}</td>
+                                                <td>{{ consultation.consult_date }}</td>
+                                                <td>{{ consultation.consult_time }}</td>
+                                                <td>{{ consultation.comment }}</td>
+                                                <td><button>Edit</button></td>
+                                                <td><button>Delete</button></td>
+                                            </tr>
+                                            {% endif %}
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+{% endblock %}

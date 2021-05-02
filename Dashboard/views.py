@@ -23,9 +23,6 @@ class ConsultationList(ConsultationListView):
 class ConsultationApptList(ConsultationList):
     template_name = 'index/consult_appt_list.html'
 
-    def get_queryset(self, **kwargs):
-        return Consultation.objects.all()
-
 
 class ConsultationDetail(ConsultationDetailView):
     template_name = 'index/consult_detail.html'
@@ -41,6 +38,22 @@ class ConsultationUpdate(ConsultationUpdateView):
 
 class ConsultationDelete(ConsultationDeleteView):
     template_name = 'index/consult_delete.html'
+
+
+class ConsultationNew(ConsultationList):
+    template_name = 'index/consult_new.html'
+
+
+class ConsultationWorking(ConsultationList):
+    template_name = 'index/consult_working.html'
+
+
+class ConsultationPending(ConsultationList):
+    template_name = 'index/consult_pending.html'
+
+
+class ConsultationConvert(ConsultationList):
+    template_name = 'index/consult_convert.html'
 
 
 class ProfileList(ProfileListView):
@@ -87,4 +100,21 @@ class FollowUpUpdate(FollowUpUpdateView):
 
 class FollowUpDelete(FollowUpDeleteView):
     template_name = 'index/appt_delete.html'
+
+
+class FollowUpOpen(FollowUpList):
+    template_name = 'index/appt_open.html'
+
+
+class FollowUpWorking(FollowUpList):
+    template_name = 'index/appt_working.html'
+
+
+class FollowUpPending(FollowUpList):
+    template_name = 'index/appt_pending.html'
+
+
+class FollowUpComplete(FollowUpList):
+    template_name = 'index/appt_complete.html'
+
 
