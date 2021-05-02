@@ -44,6 +44,7 @@ class ProfileDetailView(LoginRequiredMixin, DetailView):
 
 
 class ProfileUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    model = Profile
     template_name = 'index/edit_profile.html'
     form_class = EditProfileForm
     success_message = 'Profile has been successfully Updated'

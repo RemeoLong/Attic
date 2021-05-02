@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-from .forms import ConsultForm
+from .forms import ConsultForm, ConsultUpdateForm
 from .models import Consultation
 
 
@@ -89,17 +89,20 @@ class ConsultationDetailView(LoginRequiredMixin, DetailView):
 
 class ConsultationCreateView(LoginRequiredMixin, CreateView):
     model = Consultation
-    fields = ['user', 'email', 'first_name', 'last_name', 'service_address', 'city', 'state', 'zip_code',
-              'phone_number', 'services', 'consult_date', 'consult_time', 'comment']
+    fields = ['email', 'first_name', 'last_name', 'service_address', 'city', 'state', 'zip_code',
+              'phone_number', 'service', 'consult_date', 'consult_time', 'comment']
 
 
 class ConsultationUpdateView(LoginRequiredMixin, UpdateView):
     model = Consultation
-    fields = ['consult_date', 'consult_time']
+    form_class = ConsultUpdateForm
 
 
 class ConsultationDeleteView(LoginRequiredMixin, DeleteView):
     model = Consultation
+    success_message = 'Consultation has been successfully Deleted.'
+
+
 
 
 

@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.urls import reverse_lazy
 from django.views.generic import ListView
 
 from Attic.models import Consultation
+from Dashboard.forms import ConsultationUpdateForm, ProfileUpdateForm
 from Profile.models import Profile, FollowUp
 from Attic.views import ConsultationListView, ConsultationDetailView, ConsultationCreateView, ConsultationUpdateView, \
     ConsultationDeleteView
@@ -34,10 +36,14 @@ class ConsultationCreate(ConsultationCreateView):
 
 class ConsultationUpdate(ConsultationUpdateView):
     template_name = 'index/consult_update.html'
+    success_url = reverse_lazy('Dashboard:ConsultList')
+    form_class = ConsultationUpdateForm
 
 
 class ConsultationDelete(ConsultationDeleteView):
     template_name = 'index/consult_delete.html'
+    success_url = reverse_lazy('Dashboard:ConsultList')
+    success_message = 'Profile has been successfully Deleted.'
 
 
 class ConsultationNew(ConsultationList):
@@ -73,10 +79,23 @@ class ProfileDetail(ProfileDetailView):
 
 class ProfileUpdate(ProfileUpdateView):
     template_name = 'index/profile_update.html'
+    form_class = ProfileUpdateForm
+    success_url = reverse_lazy('Dashboard:ProfileList')
+
+    def get_object(self, **kwargs):
+        return Profile.objects.all()
+
+    def form_valid(self, form):
+        instance = form.instance
+        instance.user = self.request.user
+        instance.save()
+
+        return super(ProfileUpdateView, self).form_valid(form)
 
 
 class ProfileDelete(ProfileDeleteView):
     template_name = 'index/profile_delete.html'
+    success_url = reverse_lazy('Dashboard:ProfileList')
 
 
 class FollowUpList(FollowUpListView):

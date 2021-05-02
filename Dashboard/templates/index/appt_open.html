@@ -14,15 +14,16 @@
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
+                                                <th>Status</th>
+                                                <th>Appointment Date</th>
+                                                <th>Appointment Time</th>
                                                 <th>Name</th>
                                                 <th>Address</th>
                                                 <th>City</th>
                                                 <th>Zip Code</th>
                                                 <th>Service</th>
-                                                <th>Appointment Date</th>
-                                                <th>Appointment Time</th>
+                                                <th>Contact Number</th>
                                                 <th>Comments</th>
-                                                <th>Status</th>
                                                 <th>Edit</th>
                                                 <th>Delete</th>
                                             </tr>
@@ -32,17 +33,22 @@
                                         {% for followup in object_list %}
                                             {% if followup.status == "Open" %}
                                             <tr>
+                                                <td>{{ followup.status }}</td>
+                                                <td>{{ followup.date }}</td>
+                                                <td>{{ followup.time }}</td>
                                                 <td>{{ followup.user.profile.first_name }} {{ followup.user.profile.last_name }}</td>
                                                 <td>{{ followup.user.profile.service_address }}</td>
                                                 <td>{{ followup.user.profile.city }}</td>
                                                 <td>{{ followup.user.profile.zip_code }}</td>
                                                 <td>{{ followup.user.profile.services }}</td>
-                                                <td>{{ followup.date }}</td>
-                                                <td>{{ followup.time }}</td>
+                                                <td>{{ followup.phone_number }}</td>
                                                 <td>{{ followup.comment }}</td>
-                                                <td>{{ followup.status }}</td>
-                                                <td><button>Edit</button></td>
-                                                <td><button>Delete</button></td>
+                                                <td><button type="button" class="btn btn-success">
+                                                    <a href="{% url 'Dashboard:FollowUpEdit' followup.id %}">Edit</a>
+                                                </button></td>
+                                                <td><button type="button" class="btn btn-danger">
+                                                    <a href="{% url 'Dashboard:FollowUpDelete' followup.id %}">Delete</a>
+                                                </button></td>
                                             </tr>
                                             {% endif %}
                                         {% endfor %}

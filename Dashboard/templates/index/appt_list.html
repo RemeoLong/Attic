@@ -40,8 +40,12 @@
                                                 <td>{{ followup.time }}</td>
                                                 <td>{{ followup.comment }}</td>
                                                 <td>{{ followup.status }}</td>
-                                                <td><button>Edit</button></td>
-                                                <td><button>Delete</button></td>
+                                                <td><button type="button" class="btn btn-success">
+                                                    <a href="{% url 'Dashboard:FollowUpEdit' followup.id %}">Edit</a>
+                                                </button></td>
+                                                <td><button type="button" class="btn btn-danger">
+                                                    <a href="{% url 'Dashboard:FollowUpDelete' followup.id %}">Delete</a>
+                                                </button></td>
                                             </tr>
                                         {% endfor %}
                                         </tbody>

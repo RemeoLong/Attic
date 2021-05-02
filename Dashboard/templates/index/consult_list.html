@@ -38,8 +38,12 @@
                                                 <td>{{ consultation.phone_number }}</td>
                                                 <td>{{ consultation.service }}</td>
                                                 <td>{{ consultation.comment }}</td>
-                                                <td><button>Edit</button></td>
-                                                <td><button>Delete</button></td>
+                                                <td><button type="button" class="btn btn-success">
+                                                    <a href="{% url 'Dashboard:ConsultEdit' consultation.id %}">Edit</a>
+                                                </button></td>
+                                                <td><button type="button" class="btn btn-danger">
+                                                    <a href="{% url 'Dashboard:ConsultDelete' consultation.id %}">Delete</a>
+                                                </button></td>
                                             </tr>
                                         {% endfor %}
                                         </tbody>
