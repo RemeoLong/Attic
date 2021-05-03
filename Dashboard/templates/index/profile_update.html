@@ -6,11 +6,11 @@
 {% block list %}
 
 
-<h1>Editing Profile: {{ user.username }}</h1>
+<h1>Editing Profile: {{ profile.user.username }}</h1>
 <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-user-edit"></i>
-                                {{ user.profile.first_name }} {{ user.profile.last_name }}
+                                {{ profile.first_name }} {{ profile.last_name }}
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">

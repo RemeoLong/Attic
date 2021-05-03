@@ -41,10 +41,10 @@
                                                 <td>{{ profile.warranty_end_date }}</td>
                                                 <td>{{ profile.invoice }}</td>
                                                 <td><button type="button" class="btn btn-success">
-                                                    <a href="{% url 'Dashboard:ProfileEdit' user.id %}">Edit</a>
+                                                    <a href="{% url 'Dashboard:ProfileEdit' profile.id %}">Edit</a>
                                                 </button></td>
                                                 <td><button type="button" class="btn btn-danger">
-                                                    <a href="{% url 'Dashboard:ProfileDelete' user.id %}">Delete</a>
+                                                    <a href="{% url 'Dashboard:ProfileDelete' profile.id %}">Delete</a>
                                                 </button></td>
                                             </tr>
                                         {% endfor %}

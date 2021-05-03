@@ -6,11 +6,11 @@
 
 {% block list %}
 
-<h1>Deletion Confirmation: {{ user.username }}</h1>
+<h1>Deletion Confirmation: {{ profile.user.username }}</h1>
 <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-user-times"></i>
-                                {{ user.profile.first_name }} {{ user.profile.last_name }}
+                                {{ profile.first_name }} {{ profile.last_name }}
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -20,12 +20,12 @@
 <form action="" method="post">{% csrf_token %} <br>
     <h2>Are you sure you want to <b><i>DELETE</i></b> Consultation:</h2>
     <br>
-    <h2>Email: {{ user.profile.email }}</h2>
-    <h2>Name: {{ user.profile.first_name }} {{ user.profile.last_name }}</h2>
-    <h2>Address: {{ user.profile.service_address }}</h2>
-    <h2>{{ user.profile.city }}, {{ user.profile.state }} {{ user.profile.zip_code }}</h2>
-    <h2>Contact Number: {{ user.profile.phone_number }}</h2>
-    <h2>Service: {{ user.profile.services }}</h2>
+    <h2>Email: {{ profile.email }}</h2>
+    <h2>Name: {{ profile.first_name }} {{ profile.last_name }}</h2>
+    <h2>Address: {{ profile.service_address }}</h2>
+    <h2>{{ profile.city }}, {{ profile.state }} {{ profile.zip_code }}</h2>
+    <h2>Contact Number: {{ profile.phone_number }}</h2>
+    <h2>Service: {{ profile.services }}</h2>
     <br>
     <p>This deletion will be <b><i>Permanent</i></b> and <b><i>Cannot Be Undone</i></b>.</p>
     <p>Click "Confirm" to Delete.</p>

@@ -1,6 +1,8 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import ListView
+from django.views.generic import ListView, UpdateView, DeleteView
 
 from Attic.models import Consultation
 from Dashboard.forms import ConsultationUpdateForm, ProfileUpdateForm
@@ -77,25 +79,20 @@ class ProfileDetail(ProfileDetailView):
     template_name = 'index/profile_detail.html'
 
 
-class ProfileUpdate(ProfileUpdateView):
+class ProfileUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    model = Profile
     template_name = 'index/profile_update.html'
     form_class = ProfileUpdateForm
     success_url = reverse_lazy('Dashboard:ProfileList')
-
-    def get_object(self, **kwargs):
-        return Profile.objects.all()
-
-    def form_valid(self, form):
-        instance = form.instance
-        instance.user = self.request.user
-        instance.save()
-
-        return super(ProfileUpdateView, self).form_valid(form)
+    success_message = 'Profile has been successfully Updated'
 
 
-class ProfileDelete(ProfileDeleteView):
+class ProfileDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
+    model = Profile
     template_name = 'index/profile_delete.html'
     success_url = reverse_lazy('Dashboard:ProfileList')
+    success_message = 'Profile has been successfully Deleted'
+
 
 
 class FollowUpList(FollowUpListView):

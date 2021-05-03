@@ -65,3 +65,6 @@ class ConsultUpdateForm(forms.ModelForm):
         model = Consultation
         fields = ('email', 'first_name', 'last_name', 'phone_number', 'service', 'service_address', 'city', 'state',
                   'zip_code', 'consult_date', 'consult_time', 'comment')
+
+
+
