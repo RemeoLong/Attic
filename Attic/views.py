@@ -89,8 +89,7 @@ class ConsultationDetailView(LoginRequiredMixin, DetailView):
 
 class ConsultationCreateView(LoginRequiredMixin, CreateView):
     model = Consultation
-    fields = ['email', 'first_name', 'last_name', 'service_address', 'city', 'state', 'zip_code',
-              'phone_number', 'service', 'consult_date', 'consult_time', 'comment']
+    form_class = ConsultForm
 
 
 class ConsultationUpdateView(LoginRequiredMixin, UpdateView):

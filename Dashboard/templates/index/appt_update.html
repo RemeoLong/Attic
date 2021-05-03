@@ -1,13 +1,46 @@
 {% extends 'base_dashboard.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% block title %}<title>Edit Follow Up</title> {% endblock %}
 
-</body>
-</html>
+{% block list %}
+
+
+<h1>Edit Follow Up Appointment: {{ followup.date }} @ {{ followup.time }} </h1>
+<div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-calendar-check"></i>
+                                {{ followup.user.profile.first_name }} {{ followup.user.profile.last_name }}
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+<tbody>
+<form method="POST">
+        {% csrf_token %}
+        <large style="text-align: center;">{{ c_form.as_p }}</large>
+    <tr>
+           {% for field in form %}
+      <p>
+        {{ field.label_tag }}<br>
+        {{ field }}
+        {% if field.help_text %}
+          <small style="color: white">{{ field.help_text }}</small>
+        {% endif %}
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+    {% endfor %}
+        </tr>
+        <button type="submit">Submit</button>
+</form>
+</tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+
+{% endblock %}

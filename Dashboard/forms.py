@@ -2,7 +2,7 @@ from django import forms
 
 from Attic.models import Consultation
 from Attic.forms import DateInput, TimeInput
-from Profile.models import Profile
+from Profile.models import Profile, FollowUp
 
 
 class ConsultationUpdateForm(forms.ModelForm):
@@ -33,6 +33,18 @@ class ConsultationUpdateForm(forms.ModelForm):
                   'zip_code', 'consult_date', 'consult_time', 'comment', 'status')
 
 
+class ConsultApptUpdateForm(forms.ModelForm):
+    consult_date = forms.DateField(widget=DateInput, required=False)
+    consult_time = forms.TimeField(widget=TimeInput, required=False)
+    comment = forms.CharField(label='Additional Comments (Not Required)', max_length=500, required=False,
+                              widget=forms.Textarea)
+
+    class Meta:
+        model = Consultation
+        fields = ('consult_date', 'consult_time', 'comment', 'status')
+
+
+
 class ProfileUpdateForm(forms.ModelForm):
     email = forms.CharField(label='Email Address', max_length=100, required=False,
                             widget=forms.TextInput(attrs={'class': "form-control"}))
@@ -57,3 +69,25 @@ class ProfileUpdateForm(forms.ModelForm):
         model = Profile
         fields = ('email', 'first_name', 'last_name', 'service_address', 'city', 'state', 'zip_code', 'phone_number',
                   'services', 'additional_service', 'warranty_start_date', 'warranty_end_date', 'warranty', 'invoice')
+
+
+class CreateFollowUp(forms.ModelForm):
+    date = forms.DateField(widget=DateInput)
+    time = forms.TimeField(widget=TimeInput)
+    comment = forms.CharField(label='Comments', max_length=500, required=False,
+                              widget=forms.Textarea)
+
+    class Meta:
+        model = FollowUp
+        fields = ('user', 'date', 'time', 'comment')
+
+
+class EditFollowUp(forms.ModelForm):
+    date = forms.DateField(widget=DateInput)
+    time = forms.TimeField(widget=TimeInput)
+    comment = forms.CharField(label='Comments', max_length=500, required=False,
+                              widget=forms.Textarea)
+
+    class Meta:
+        model = FollowUp
+        fields = ('date', 'time', 'comment', 'status')

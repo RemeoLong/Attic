@@ -1,13 +1,45 @@
 {% extends 'base_dashboard.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% block title %}<title>Delete Follow Up</title> {% endblock %}
 
-</body>
-</html>
+
+{% block list %}
+
+<h1>Deletion Confirmation: {{ followup.date }} @ {{ followup.time }}</h1>
+<div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-user-times"></i>
+                                {{ followup.user.profile.first_name }} {{ followup.user.profile.last_name }}
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+<tbody>
+<form action="" method="post">{% csrf_token %} <br>
+    <h2>Are you sure you want to <b><i>DELETE</i></b> this Follow Up Appointment:</h2>
+    <br>
+    <h2>Name: {{ followup.user.profile.first_name }} {{ followup.user.profile.last_name }}</h2>
+    <h2>Address: {{ followup.user.profile.service_address }}</h2>
+    <h2>{{ followup.user.profile.city }}, {{ followup.user.profile.state }} {{ followup.user.profile.zip_code }}</h2>
+    <h2>Contact Number: {{ followup.user.profile.phone_number }}</h2>
+    <h2>Service: {{ followup.user.profile.services }}</h2>
+    <h2>Comments: {{ followup.comment }}</h2>
+    <h2>Appointment: {{ followup.date }} @ {{ followup.time }}</h2>
+    <br>
+    <p>This deletion will be <b><i>Permanent</i></b> and <b><i>Cannot Be Undone</i></b>.</p>
+    <p>Click "Confirm" to Delete.</p>
+    <input type="submit" value="Confirm" />
+    <p></p>
+    <button type="button" class="btn btn-success"> <a href="{% url 'Dashboard:ConsultList' %}">Go Back</a> </button>
+</form>
+                                        </table>
+
+                                </div>
+                            </div>
+                        </div>
+    </div>
+</div>
+
+{% endblock %}

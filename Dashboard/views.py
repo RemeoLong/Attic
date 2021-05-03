@@ -1,11 +1,14 @@
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import ListView, UpdateView, DeleteView
+from django.views.generic import ListView, UpdateView, DeleteView, CreateView
 
 from Attic.models import Consultation
-from Dashboard.forms import ConsultationUpdateForm, ProfileUpdateForm
+from Dashboard.forms import ConsultationUpdateForm, ProfileUpdateForm, CreateFollowUp, EditFollowUp, \
+    ConsultApptUpdateForm
+from Profile.forms import EditFollowUpForm
 from Profile.models import Profile, FollowUp
 from Attic.views import ConsultationListView, ConsultationDetailView, ConsultationCreateView, ConsultationUpdateView, \
     ConsultationDeleteView
@@ -28,12 +31,19 @@ class ConsultationApptList(ConsultationList):
     template_name = 'index/consult_appt_list.html'
 
 
+class ConsultationApptUpdate(ConsultationUpdateView):
+    template_name = 'index/consult_appt_update.html'
+    success_url = reverse_lazy('Dashboard:ConsultApptList')
+    form_class = ConsultApptUpdateForm
+
+
 class ConsultationDetail(ConsultationDetailView):
     template_name = 'index/consult_detail.html'
 
 
 class ConsultationCreate(ConsultationCreateView):
     template_name = 'index/consult_add.html'
+    success_url = reverse_lazy('Dashboard:ConsultList')
 
 
 class ConsultationUpdate(ConsultationUpdateView):
@@ -79,6 +89,13 @@ class ProfileDetail(ProfileDetailView):
     template_name = 'index/profile_detail.html'
 
 
+class ProfileCreate(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+    model = Profile
+    template_name = 'index/profile_add.html'
+    success_url = reverse_lazy('Dashboard:ProfileList')
+    form_class = UserCreationForm
+
+
 class ProfileUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Profile
     template_name = 'index/profile_update.html'
@@ -94,7 +111,6 @@ class ProfileDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     success_message = 'Profile has been successfully Deleted'
 
 
-
 class FollowUpList(FollowUpListView):
     template_name = 'index/appt_list.html'
 
@@ -106,16 +122,21 @@ class FollowUpDetail(FollowUpDetailView):
     template_name = 'index/appt_detail.html'
 
 
-class FollowUpCreate(FollowUpCreateView):
+class FollowUpCreate(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     template_name = 'index/appt_add.html'
+    form_class = CreateFollowUp
+    success_url = reverse_lazy('Dashboard:FollowUpList')
 
 
 class FollowUpUpdate(FollowUpUpdateView):
     template_name = 'index/appt_update.html'
+    form_class = EditFollowUp
+    success_url = reverse_lazy('Dashboard:FollowUpList')
 
 
 class FollowUpDelete(FollowUpDeleteView):
     template_name = 'index/appt_delete.html'
+    success_url = reverse_lazy('Dashboard:FollowUpList')
 
 
 class FollowUpOpen(FollowUpList):

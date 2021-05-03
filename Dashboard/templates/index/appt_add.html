@@ -1,10 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base_dashboard.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block title %}<title>Create Follow Up</title> {% endblock %}
+
+{% block list %}
+
+
+<h1>Create Follow Up Appointment </h1>
+<div class="card mb-4">
+                            <div class="card-header">
+                                <i class="far fa-calendar-plus"></i>
+                                {{ consultation.first_name }} {{ consultation.last_name }}
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+<tbody>
+<form method="POST">
+        {% csrf_token %}
+        <large style="text-align: center;">{{ c_form.as_p }}</large>
+    <tr>
+           {% for field in form %}
+      <p>
+        {{ field.label_tag }}<br>
+        {{ field }}
+        {% if field.help_text %}
+          <small style="color: white">{{ field.help_text }}</small>
+        {% endif %}
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+    {% endfor %}
+        </tr>
+        <button type="submit">Submit</button>
+</form>
+</tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+
+{% endblock %}
