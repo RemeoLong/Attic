@@ -4,6 +4,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, UpdateView, DeleteView, CreateView
+#from django.views.generic.base import View
 
 from Attic.models import Consultation
 from Dashboard.forms import ConsultationUpdateForm, ProfileUpdateForm, CreateFollowUp, EditFollowUp, \
@@ -18,6 +19,16 @@ from Profile.views import ProfileListView, FollowUpListView, ProfileDetailView, 
 
 def dash(request):
     return render(request, 'index/dashboard.html', {})
+
+
+class Dashboard(ListView):
+    template_name = 'index/dashboard.html'
+    queryset = Consultation.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super(Dashboard, self).get_context_data(**kwargs)
+        context['appt'] = FollowUp.objects.all()
+        return context
 
 
 class ConsultationList(ConsultationListView):

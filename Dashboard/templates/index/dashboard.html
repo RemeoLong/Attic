@@ -30,7 +30,7 @@
 <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table mr-1"></i>
-                                Today's Appointment
+                                Today's Appointment: {% now "M d, Y h:i A" %}
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -38,27 +38,42 @@
                                         <thead>
                                             <tr>
                                                 <th>Status</th>
+                                                <th>Appointment Date</th>
+                                                <th>Appointment Time</th>
                                                 <th>Name</th>
                                                 <th>Address</th>
                                                 <th>City</th>
                                                 <th>Zip Code</th>
                                                 <th>Service</th>
-                                                <th>Appointment Date</th>
-                                                <th>Appointment Time</th>
+                                                <th>Comments</th>
                                             </tr>
                                         </thead>
 
                                         <tbody>
-                                        {% for consult in object_list %}
+                                        {% for consultation in object_list %}
                                             <tr>
-                                                <td>{{ consultation.status }}</td>
+                                                <td>Consult: {{ consultation.status }}</td>
+                                                <td>{{ consultation.consult_date }}</td>
+                                                <td>{{ consultation.consult_time }}</td>
                                                 <td>{{ consultation.first_name }} {{ consultation.last_name }}</td>
                                                 <td>{{ consultation.service_address }}</td>
                                                 <td>{{ consultation.city }}</td>
                                                 <td>{{ consultation.zip_code }}</td>
-                                                <td>{{ consultation.services }}</td>
-                                                <td>{{ consultation.date }}</td>
-                                                <td>{{ consultation.time }}</td>
+                                                <td>{{ consultation.service }}</td>
+                                                <td>{{ consultation.comment }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        {% for followup in appt %}
+                                            <tr>
+                                                <td>Follow Up: {{ followup.status }}</td>
+                                                <td>{{ followup.date }}</td>
+                                                <td>{{ followup.time }}</td>
+                                                <td>{{ followup.user.profile.first_name }} {{ followup.user.profile.last_name }}</td>
+                                                <td>{{ followup.user.profile.service_address }}</td>
+                                                <td>{{ followup.user.profile.city }}</td>
+                                                <td>{{ followup.user.profile.zip_code }}</td>
+                                                <td>{{ followup.user.profile.services }}</td>
+                                                <td>{{ followup.comment }}</td>
                                             </tr>
                                         {% endfor %}
                                         </tbody>

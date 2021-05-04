@@ -8,7 +8,7 @@ from .views import *
 
 app_name = "Dashboard"
 urlpatterns = [
-    path('home', login_required(views.dash), name='Dashboard'),
+    path('home', login_required(Dashboard.as_view()), name='Dashboard'),
     path('profile_list/', login_required(ProfileList.as_view()), name="ProfileList"),
     path('profile_detail/<int:id>/', login_required(ProfileDetail.as_view()), name="ProfileDetails"),
     path('profile_create', login_required(ProfileCreate.as_view()), name="ProfileCreate"),
