@@ -16,7 +16,6 @@
                                         <i class="fas fa-user-plus"></i>
                                             <a href="{% url 'Dashboard:ConsultCreate' %}">   Create Consultation</a>
                                             <tr>
-                                                <th>Status</th>
                                                 <th>Name</th>
                                                 <th>Address</th>
                                                 <th>City</th>
@@ -32,7 +31,6 @@
                                         <tbody>
                                         {% for consultation in object_list %}
                                             <tr>
-                                                <td>{{ consultation.status }}</td>
                                                 <td>{{ consultation.first_name }} {{ consultation.last_name }}</td>
                                                 <td>{{ consultation.service_address }}</td>
                                                 <td>{{ consultation.city }}</td>

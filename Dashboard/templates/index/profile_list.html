@@ -22,10 +22,9 @@
                                                 <th>City</th>
                                                 <th>Zip Code</th>
                                                 <th>Service</th>
-                                                <th>Additional Services</th>
-                                                <th>Warranty Start Date</th>
-                                                <th>Warranty End Date</th>
-                                                <th>Invoice</th>
+                                                <th>Added Services</th>
+                                                <th>Warranty Start</th>
+                                                <th>Warranty End</th>
                                                 <th>Edit</th>
                                                 <th>Delete</th>
                                             </tr>
@@ -43,7 +42,6 @@
                                                 <td>{{ profile.additional_service }}</td>
                                                 <td>{{ profile.warranty_start_date }}</td>
                                                 <td>{{ profile.warranty_end_date }}</td>
-                                                <td>{{ profile.invoice }}</td>
                                                 <td><button type="button" class="btn btn-success">
                                                     <a href="{% url 'Dashboard:ProfileEdit' profile.id %}">Edit</a>
                                                 </button></td>

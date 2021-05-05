@@ -13,7 +13,7 @@
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a class="navbar-brand" href="index.html">Attic Restorations</a>
+            <a class="navbar-brand" href="{% url 'Index' %}">Attic Restorations</a>
             <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
@@ -110,42 +110,46 @@
                         <div class="row">
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">Consultations</div>
+                                    <div class="card-body"><h6>Consultations</h6></div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link">Total: {{ consultation.count }}</a>
-                                        <a class="small text-white stretched-link">Pending: {{ consultation.count }}</a>
-                                        <a class="small text-white stretched-link" href="{% url 'Dashboard:ConsultList' %}">Working: {{ consultation.count }}</a>
+                                        <a class="small text-white stretched-link"><h6>Total: {{ consult_count }}</h6></a>
+                                        <a class="small text-white stretched-link" href="{% url 'Dashboard:ConsultList' %}">
+                                            <h6>Converted to Customer: {{ consult_convert_count }}</h6></a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">Consultations Appointments</div>
+                                    <div class="card-body"><h6>Consultations Appointments</h6></div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link">Total: {{ profile.count }}</a>
-                                        <a class="small text-white stretched-link" href="{% url 'Dashboard:ConsultApptList' %}">Open: {{ profile.count }}</a>
+                                        <a class="small text-white stretched-link"><h6>New: {{ consult_new_count }}</h6></a>
+                                        <a class="small text-white stretched-link"><h6>Pending: {{ consult_pending_count }}</h6></a>
+                                        <a class="small text-white stretched-link" href="{% url 'Dashboard:ConsultApptList' %}">
+                                            <h6>Working: {{ consult_working_count }}</h6></a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">Customers</div>
+                                    <div class="card-body"><h6>Customers</h6></div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="{% url 'Dashboard:ProfileList' %}">Total: {{ profile.count }}</a>
+                                        <a class="small text-white stretched-link" href="{% url 'Dashboard:ProfileList' %}">
+                                             <h6>Total: {{ cust_count }}</h6></a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">Follow Up Appointments</div>
+                                    <div class="card-body"><h6>Follow Up Appointments</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link">Open: {{ total_open_followup }}</a>
-                                        <a class="small text-white stretched-link">Working: {{ consultation.count }}</a>
-                                        <a class="small text-white stretched-link">Pending: {{ consultation.status.count }}</a>
-                                        <a class="small text-white stretched-link" href="{% url 'Dashboard:FollowUpList' %}">Complete: {{ consultation.count }}</a>
+                                        <a class="small text-white stretched-link"><h6>Open: {{ followup_open_count }}</h6></a>
+                                        <a class="small text-white stretched-link"><h6>Working: {{ followup_working_count }}</h6></a>
+                                        <a class="small text-white stretched-link"><h6>Pending: {{ followup_pending_count }}</h6></a>
+                                        <a class="small text-white stretched-link" href="{% url 'Dashboard:FollowUpList' %}">
+                                            <h6>Complete: {{ followup_complete_count }}</h6></a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>

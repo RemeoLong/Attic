@@ -50,9 +50,11 @@
                                         </thead>
 
                                         <tbody>
-                                        {% for consultation in object_list %}
+
+                                        {% for consultation in consult_today %}
+
                                             <tr>
-                                                <td>Consult: {{ consultation.status }}</td>
+                                                <td>Consultation: {{ consultation.status }}</td>
                                                 <td>{{ consultation.consult_date }}</td>
                                                 <td>{{ consultation.consult_time }}</td>
                                                 <td>{{ consultation.first_name }} {{ consultation.last_name }}</td>
@@ -62,8 +64,9 @@
                                                 <td>{{ consultation.service }}</td>
                                                 <td>{{ consultation.comment }}</td>
                                             </tr>
+
                                         {% endfor %}
-                                        {% for followup in appt %}
+                                        {% for followup in followup_today %}
                                             <tr>
                                                 <td>Follow Up: {{ followup.status }}</td>
                                                 <td>{{ followup.date }}</td>
