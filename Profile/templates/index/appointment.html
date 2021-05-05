@@ -17,7 +17,7 @@ button {
     <h1>Follow-Up Appointments:</h1>
 
     {% for followup in object_list %}
-        {% if followup.status == "Open" or "Pending" %}
+        {% if followup.status == "Open" %}
         <br>
         <h2>Status: {{ followup.status }}</h2>
         <h2>Date: {{ followup.date }} @ {{ followup.time }}</h2>

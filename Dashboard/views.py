@@ -1,17 +1,18 @@
-from datetime import date, datetime
+from datetime import datetime
 
+from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, UpdateView, DeleteView, CreateView
-#from django.views.generic.base import View
 
 from Attic.models import Consultation
 from Dashboard.forms import ConsultationUpdateForm, ProfileUpdateForm, CreateFollowUp, EditFollowUp, \
     ConsultApptUpdateForm
-from Profile.forms import EditFollowUpForm
 from Profile.models import Profile, FollowUp
 from Attic.views import ConsultationListView, ConsultationDetailView, ConsultationCreateView, ConsultationUpdateView, \
     ConsultationDeleteView
@@ -43,6 +44,8 @@ class Dashboard(ListView):
         context['followup_pending_count'] = FollowUp.objects.filter(status="Pending").count()
         context['followup_complete_count'] = FollowUp.objects.filter(status="Complete").count()
         context['followup_today'] = FollowUp.objects.filter(date=datetime.now())
+        context['todays_appt_combine'] = FollowUp.objects.filter(date=datetime.now()).count() + Consultation.objects.filter\
+            (consult_date=datetime.now()).count()
         return context
 
 
