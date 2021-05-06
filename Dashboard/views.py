@@ -18,10 +18,6 @@ from Profile.views import ProfileListView, FollowUpListView, ProfileDetailView, 
     ProfileDeleteView, FollowUpUpdateView, FollowUpDeleteView, FollowUpCreateView
 
 
-def dash(request):
-    return render(request, 'index/dashboard.html', {})
-
-
 class Dashboard(ListView):
     template_name = 'index/dashboard.html'
     queryset = Consultation.objects.all()
@@ -62,10 +58,6 @@ class ConsultationApptUpdate(ConsultationUpdateView, Dashboard):
     template_name = 'index/consult_appt_update.html'
     success_url = reverse_lazy('Dashboard:ConsultApptList')
     form_class = ConsultApptUpdateForm
-
-
-class ConsultationDetail(ConsultationDetailView, Dashboard):
-    template_name = 'index/consult_detail.html'
 
 
 class ConsultationCreate(ConsultationCreateView, Dashboard):
@@ -112,10 +104,6 @@ class ProfileList(Dashboard, ProfileListView):
         return Profile.objects.all()
 
 
-class ProfileDetail(ProfileDetailView, Dashboard):
-    template_name = 'index/profile_detail.html'
-
-
 class ProfileCreate(LoginRequiredMixin, SuccessMessageMixin, CreateView, Dashboard):
     model = Profile
     template_name = 'index/profile_add.html'
@@ -144,10 +132,6 @@ class FollowUpList(Dashboard, FollowUpListView):
 
     def get_queryset(self, **kwargs):
         return FollowUp.objects.all()
-
-
-class FollowUpDetail(FollowUpDetailView):
-    template_name = 'index/appt_detail.html'
 
 
 class FollowUpCreate(LoginRequiredMixin, SuccessMessageMixin, CreateView, Dashboard):

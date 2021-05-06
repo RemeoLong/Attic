@@ -125,9 +125,9 @@
                                     <div class="card-body"><h6>Consultations Appointments</h6></div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
                                         <a class="small text-white stretched-link"><h6>New: {{ consult_new_count }}</h6></a>
-                                        <a class="small text-white stretched-link"><h6>Pending: {{ consult_pending_count }}</h6></a>
+                                        <a class="small text-white stretched-link"><h6>Working: {{ consult_working_count }}</h6></a>
                                         <a class="small text-white stretched-link" href="{% url 'Dashboard:ConsultApptList' %}">
-                                            <h6>Working: {{ consult_working_count }}</h6></a>
+                                            <h6>Pending: {{ consult_pending_count }}</h6></a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
@@ -144,7 +144,7 @@
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body"><h6>Follow Up Appointments</h6></div>
+                                    <div class="card-body"><h6>Follow Ups</h6></div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
                                         <a class="small text-white stretched-link"><h6>Open: {{ followup_open_count }}</h6></a>
                                         <a class="small text-white stretched-link"><h6>Working: {{ followup_working_count }}</h6></a>

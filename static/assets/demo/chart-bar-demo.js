@@ -12,7 +12,7 @@ var myLineChart = new Chart(ctx, {
       label: "Consultations",
       backgroundColor: "rgba(2,117,216,1)",
       borderColor: "rgba(2,117,216,1)",
-      data: [4215, 5312, 6251, 7841, 9821, 14984],
+      data: [6, 8, 12, 7, 18, 4, 24, 9, 15, 11, 10, 16],
     }],
   },
   options: {
@@ -31,7 +31,7 @@ var myLineChart = new Chart(ctx, {
       yAxes: [{
         ticks: {
           min: 0,
-          max: 15000,
+          max: 25,
           maxTicksLimit: 5
         },
         gridLines: {

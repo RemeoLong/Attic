@@ -1,13 +1,13 @@
 {% extends 'base_dashboard.html' %}
 {% load static %}
 
-{% block title %}<title>Appointments List</title> {% endblock %}
+{% block title %}<title>Follow Up List</title> {% endblock %}
 
 {% block list %}
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table mr-1"></i>
-                                Follow Up Appointments
+                                Follow Ups
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -16,6 +16,7 @@
                                         <i class="far fa-calendar-plus"></i>
                                             <a href="{% url 'Dashboard:FollowUpCreate' %}">   Create Follow Up Appointment</a>
                                             <tr>
+                                                <th>Status</th>
                                                 <th>Name</th>
                                                 <th>Address</th>
                                                 <th>City</th>
@@ -24,7 +25,6 @@
                                                 <th>Appointment Date</th>
                                                 <th>Appointment Time</th>
                                                 <th>Comments</th>
-                                                <th>Status</th>
                                                 <th>Edit</th>
                                                 <th>Delete</th>
                                             </tr>
@@ -33,6 +33,7 @@
                                         <tbody>
                                         {% for followup in object_list %}
                                             <tr>
+                                                <td>{{ followup.status }}</td>
                                                 <td>{{ followup.user.profile.first_name }} {{ followup.user.profile.last_name }}</td>
                                                 <td>{{ followup.user.profile.service_address }}</td>
                                                 <td>{{ followup.user.profile.city }}</td>
@@ -41,7 +42,6 @@
                                                 <td>{{ followup.date }}</td>
                                                 <td>{{ followup.time }}</td>
                                                 <td>{{ followup.comment }}</td>
-                                                <td>{{ followup.status }}</td>
                                                 <td><button type="button" class="btn btn-success">
                                                     <a href="{% url 'Dashboard:FollowUpEdit' followup.id %}">Edit</a>
                                                 </button></td>
