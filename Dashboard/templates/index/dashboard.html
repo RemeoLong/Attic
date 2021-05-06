@@ -46,6 +46,7 @@
                                                 <th>Zip Code</th>
                                                 <th>Service</th>
                                                 <th>Comments</th>
+                                                <th>Edit</th>
                                             </tr>
                                         </thead>
 
@@ -63,6 +64,9 @@
                                                 <td>{{ consultation.zip_code }}</td>
                                                 <td>{{ consultation.service }}</td>
                                                 <td>{{ consultation.comment }}</td>
+                                                <td><button type="button" class="btn btn-success">
+                                                    <a href="{% url 'Dashboard:ConsultationApptUpdate' consultation.id %}">Edit</a>
+                                                </button></td>
                                             </tr>
 
                                         {% endfor %}
@@ -77,6 +81,9 @@
                                                 <td>{{ followup.user.profile.zip_code }}</td>
                                                 <td>{{ followup.user.profile.services }}</td>
                                                 <td>{{ followup.comment }}</td>
+                                                <td><button type="button" class="btn btn-success">
+                                                    <a href="{% url 'Dashboard:FollowUpEdit' followup.id %}">Edit</a>
+                                                </button></td>
                                             </tr>
                                         {% endfor %}
                                         </tbody>

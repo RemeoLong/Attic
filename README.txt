@@ -23,13 +23,13 @@ Dashboard Application:
 View/Create/Edit/Delete Consultation, Profile, & Follow Up Appointment
 Area/Bar Chart 
 
-Production site @ https://atticrestorations.biz/
-#Currently the Production Site only has the Consultation Application.#
-#Profile & Dashboard Application will be added when the Dashboard Application is completed.#
+Production Site @ https://atticrestorations.biz/
+** Profile & Dashboard Application is not currently on Production server, only on Staging server
 
-Staging site @ http://remlon.pythonanywhere.com
-Staging Profile site @ http://remlon.pythonanywhere.com/Profile/home
-Staging Dashboard site @ http://remlon.pythonanywhere.com/Dashboard/home
+
+Staging Site @ http://remlon.pythonanywhere.com
+Staging Profile Site @ http://remlon.pythonanywhere.com/Profile/home
+Staging Dashboard Site @ http://remlon.pythonanywhere.com/Dashboard/home
 
 Staging login to view site
 User: guest
