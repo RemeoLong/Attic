@@ -62,10 +62,11 @@ def consultation(request):
                 'city': form.cleaned_data['city'],
                 'zipcode': form.cleaned_data['zip_code'],
                 'comment': form.cleaned_data['comment'],
+
             }
-            date = {'consult_date': form.cleaned_data['consult_date']}
-            time = {'consult_time': form.cleaned_data['consult_time']}
-            message = "\n".join(body.values()) + str(date) + str(time)
+            date = str({'consult_date': form.cleaned_data['consult_date']})
+            time = str({'consult_time': form.cleaned_data['consult_time']})
+            message = "\n".join(body.values()) + date + time
             form.save()
 
             try:

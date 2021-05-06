@@ -24,7 +24,6 @@ View/Create/Edit/Delete Consultation, Profile, & Follow Up Appointment
 Area/Bar Chart 
 
 Production Site @ https://atticrestorations.biz/
-** Profile & Dashboard Application is not currently on Production server, only on Staging server
 
 
 Staging Site @ http://remlon.pythonanywhere.com
