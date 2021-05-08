@@ -3,10 +3,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Attic Restorations</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  {% block title %}<title>Attic Restorations</title> {% endblock %}
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -20,7 +20,7 @@
     height: 250px;
     max-width: 100%;
     margin-bottom:0;
-    background-image: url(static/css/Logo.png);
+    background-image: url(/static/css/Logo.png);
     background-repeat: no-repeat;
     background-position: center;
     background-color: #e19528;
@@ -75,8 +75,8 @@
 }
 
 img.avatar {
-  height:40%;
-  width: 40%;
+  height:25%;
+  width: 25%;
   border-radius: 50%;
 }
 

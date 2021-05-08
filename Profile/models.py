@@ -18,9 +18,10 @@ class Profile(models.Model):
         ("Pest: Snakes", "Pest: Snakes"),
         ("Pest: Bats", "Pest: Bats"),
         ("Pest: Birds", "Pest: Birds"),
-        ("Construction", "Construction"),
-        ("Roofing Repair", "Roofing Repair"),
+        ("Pest: Insects", "Pest: Insects"),
         ("Insulation Install", "Insulation Install"),
+        ("Roofing Repair", "Roofing Repair"),
+        ("Construction", "Construction"),
         ("Sheet Rock", "Sheet Rock"),
         ("Cement Small Jobs", "Cement Small Jobs"),
     )
