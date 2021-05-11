@@ -11,4 +11,6 @@ urlpatterns = [
     path('Reviews', views.reviews, name="Reviews"),
     path('success', views.success, name="Success"),
     path('Register', views.register, name="Register"),
+    path('Privacy_Policy', views.privacy, name="Privacy"),
+    path('Terms', views.terms, name="Terms"),
 ]

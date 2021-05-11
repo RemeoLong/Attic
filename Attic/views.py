@@ -16,6 +16,14 @@ def index(request):
     return render(request, 'index/home.html', {})
 
 
+def privacy(request):
+    return render(request, 'index/privacy.html', {})
+
+
+def terms(request):
+    return render(request, 'index/terms.html', {})
+
+
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
