@@ -167,24 +167,3 @@ button:hover {
     background-position: center;
     background-color: #e19528;
   }
-
-.fa-facebook {
-  background: #e19528;
-  color: #111857;
-}
-
-.fa-instagram {
-  background: #e19528;
-  color: #111857;
-}
-
-<nav class="navbar navbar-expand-sm bg-light justify-content-left">
-  <ul class="navbar-nav active" style="background-color: #e19528;">
-    <li class="nav-item active">
-      <li1><a href="#" class="fa fa-facebook" style="font-size:00px"></a></li1>
-    </li>
-    <li class="nav-item active">
-      <li1><a href="#" class="fa fa-instagram" style="font-size:00px"></a></li1>
-    </li>
-  </ul>
-</nav>
